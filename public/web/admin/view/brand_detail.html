@@ -1,0 +1,74 @@
+<div>
+    <div class="col-xs-12">
+            <span class="pull-right" style="text-align: right;" >
+                <a class="btn btn-lg btn-info " href="/admin.html#/brand"><i class="fa fa-arrow-left" style="padding-right: 3px;"></i>返回</a>
+            </span>
+        <h3 class="header smaller lighter blue">编辑品牌信息</h3>
+
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <!--<div class="widget-header">
+                    <h4>品牌基本信息</h4>
+                </div>-->
+                <div class="widget-body">
+                    <form name="brandDetailForm" class="form-horizontal" style="padding: 20px 0 0 30px;" role="form">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg ">品牌中文名称</label>
+
+                            <div class="col-md-6">
+                                <input type="text" placeholder="必填，长度不超过20字" ng-model="brandCn" class="form-control input-lg" required maxlength="20">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg ">品牌英文名称</label>
+
+                            <div class="col-md-6">
+                                <input type="text" placeholder="必填，长度不超过20字" ng-model="brandEn" class="form-control input-lg" required maxlength="20">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg ">生产商</label>
+
+                            <div class="col-md-6">
+                                <select   class="form-control input-lg" style="padding-left:0;" ng-model ="producerId"  >
+                                    <option ng-repeat="producer in producerArray" value="{{producer.id}}" ng-selected="producerId==producer.id">{{producer.name_cn}} | {{producer.name_en}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg ">备注信息</label>
+
+                            <div class="col-md-6">
+                                <textarea style="padding-left: 4px;" placeholder="200字以内" rows="8" ng-model="remark" class="form-control input-lg " maxlength="200"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="form-horizontal" style="padding: 0 0 0 30px;">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">品牌图片</label>
+
+                        <div class="col-md-6">
+                            <form id="uploadImageForm">
+                                <div class=" col-xs-12" ng-click="bindFile($event)" style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
+                                    <img  style="max-width:100%;left: auto;" src="/admin/assets/images/upload-icon.png">
+                                </div>
+                                <input name="image" type="file" onchange="angular.element(this).scope().uploadBrandImage(this)" max_size="4M" style="display: none;">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+
+                            <button class="btn btn-success" type="button" ng-click="updateBrand()" ng-disabled="brandDetailForm.$invalid">
+                                <i class="fa fa-save "></i>
+                                更新
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

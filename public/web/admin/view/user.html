@@ -1,0 +1,45 @@
+<div>
+    <div class="rows">
+        <div class="col-xs-12">
+            <h3 class="header smaller lighter blue">用户管理</h3>
+        </div>
+        <div class="col-xs-12" >
+            <div class="table-header">
+                用户信息列表
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover dataTable">
+                    <thead style="font-size: 18px;font-weight: bold;">
+                    <tr role="row">
+                        <th colspan="1" rowspan="1">ID</th>
+                        <th colspan="1" rowspan="1">用户昵称</th>
+                        <th colspan="1" rowspan="1">用户头像</th>
+                        <th colspan="1" rowspan="1">性别</th>
+                        <th colspan="1" rowspan="1">用户类型</th>
+                        <th colspan="1" rowspan="1">推荐人</th>
+                        <th colspan="1" rowspan="1">备注信息</th>
+                        <th colspan="1" rowspan="1">最后登录时间</th>
+                        <th colspan="1" rowspan="1"></th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-size: 16px;font-weight: bold;">
+                    <tr ng-repeat="user in userArray">
+                        <td>{{user.id}}</td>
+                        <td>{{user.wechat_name}}</td>
+                        <td>{{user.wechat_avatar}}</td>
+                        <td>{{user.gender ==0?'女':'男'}}</td>
+                        <td>{{user.user_type ==1?'客户':'供应商'}}</td>
+                        <td>{{user.employee_id}}</td>
+                        <td>{{user.remark}}</td>
+                        <td>{{user.last_login_on | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td>
+                            <a class="btn btn-xs btn-info" title="编辑" href="/admin.html#/user/{{user.id}}"><i class="fa fa-eye"></i></a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

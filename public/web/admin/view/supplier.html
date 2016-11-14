@@ -1,0 +1,144 @@
+<div>
+    <div class="rows">
+        <div class="col-xs-12">
+            <h3 class="header smaller lighter blue">管理供应商</h3>
+            <div class="col-xs-12" style="text-align: right;padding: 10px 18px;" ng-show="showSupplierFlag">
+                <button class="btn btn-lg btn-info " ng-click="setShowFlag()"><i class="fa fa-plus-circle" style="padding-right: 3px;"></i>新增供应商信息</button>
+            </div>
+            <div class="col-xs-12" ng-show="showSupplierFlag == false">
+                <!--<div class="table-header">
+                    新增供应商信息
+                </div>-->
+                <form name="supplierForm" class="form-horizontal" style="padding-top: 20px;" role="form">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">企业名称</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="必填，长度不超过100字" ng-model="bizName" class="form-control input-lg" required maxlength="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">联系人</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="必填，长度不超过40字" ng-model="contact" class="form-control input-lg" required maxlength="40">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">邮箱</label>
+
+                        <div class="col-md-6">
+                            <input type="email" placeholder="必填" ng-model="email" class="form-control input-lg" required maxlength="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">联系电话</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="必填" ng-model="phone" class="form-control input-lg"  maxlength="20">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">传真</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="必填" ng-model="fax" class="form-control input-lg"  maxlength="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">州</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="例如CA" ng-model="state" class="form-control input-lg"  maxlength="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">市</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="例如Los Angels" ng-model="city" class="form-control input-lg"  maxlength="40">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">公司地址</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="" ng-model="address" class="form-control input-lg"  maxlength="30">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">zipcode</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="地区编码" ng-model="zipcode" class="form-control input-lg"  maxlength="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">网址</label>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="例如，http://example.com" ng-model="website" class="form-control input-lg"  maxlength="200">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg">备注信息</label>
+
+                        <div class="col-md-6">
+                            <textarea placeholder="200字以内" style="padding-left: 4px;" rows="4" ng-model="remark" class="form-control input-lg" maxlength="200"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-inverse" type="reset" ng-click="setShowFlag()" >
+                                <i class="fa fa-close "></i>
+                                取消
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+
+                            <button class="btn btn-info" type="button" ng-click="addSupplier()" ng-disabled="supplierForm.$invalid">
+                                <i class="fa fa-check "></i>
+                                确定
+                            </button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12"  ng-show="showSupplierFlag">
+            <div class="table-header">
+                商品列表
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover dataTable">
+                    <thead style="font-size: 18px;font-weight: bold;">
+                    <tr role="row">
+                        <th colspan="1" rowspan="1">ID</th>
+                        <th colspan="1" rowspan="1">企业名称</th>
+                        <th colspan="1" rowspan="1">联系人</th>
+                        <th colspan="1" rowspan="1">电话</th>
+                        <th colspan="1" rowspan="1">州/市</th>
+                        <th colspan="1" rowspan="1"></th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-size: 16px;font-weight: bold;">
+                    <tr ng-repeat="supplier in supplierArray">
+                        <td>{{supplier.id}}</td>
+                        <td>{{supplier.biz_name}}</td>
+                        <td>{{supplier.contact}}</td>
+                        <td>{{supplier.phone}}</td>
+                        <td>{{supplier.state}}/{{supplier.city}}</td>
+                        <td>
+                            <a class="btn btn-xs btn-info" title="编辑" href="/admin.html#/supplier/{{supplier.id}}"><i class="fa fa-pencil"></i></a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

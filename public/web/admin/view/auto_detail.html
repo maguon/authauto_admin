@@ -1,0 +1,111 @@
+<div>
+    <div class="col-xs-12">
+            <span class="pull-right" style="text-align: right;" >
+                <a class="btn btn-lg btn-info " href="/admin.html#/auto"><i class="fa fa-arrow-left" style="padding-right: 3px;"></i>返回</a>
+            </span>
+        <h3 class="header smaller lighter blue">编辑车辆信息</h3>
+        <div class="rows" style="margin-left: -15px;padding-top: 10px;">
+            <div class="col-xs-6">
+                <div class="panel panel-inverse" data-sortable-id="form-stuff-3">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+                        </div>
+                        <h4 class="panel-title">基本信息</h4>
+                    </div>
+                    <div class="panel-body" style="display: block;">
+                        <form name="autoDetailForm"   role="form">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label >车辆中文名称</label>
+                                    <input type="txt" class="form-control" ng-model="nameCn" placeholder="必填，长度不超过20字" required maxlength="20">
+                                </div>
+                                <div class="form-group">
+                                    <label >车辆英文名称</label>
+                                    <input type="txt" class="form-control"  ng-model="nameEn" placeholder="必填，长度不超过40字" required maxlength="40">
+                                </div>
+                                <div class="form-group">
+                                    <label >品牌信息</label>
+                                    <select   class="form-control " style="padding-left:0;" ng-model ="brandId"  >
+                                        <option ng-repeat="brand in brandArray" value="{{brand.id}}" ng-selected="brandId==brand.id">{{brand.brand_cn}}|{{brand.brand_en}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label >备注</label>
+                                    <textarea style="padding-left: 4px;" placeholder="200字以内" rows="2" ng-model="remark" class="form-control " maxlength="200"></textarea>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                        <form>
+                            <div class="form-group">
+                                <label >图片</label>
+                                <div class=" col-xs-12" ng-click="bindFile($event)" style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
+                                    <img  style="max-width:100%;left: auto;" src="/admin/assets/images/upload-icon.png">
+                                </div>
+                                <input name="image" type="file" onchange="angular.element(this).scope().uploadBrandImage(this)" max_size="4M" style="display: none;">
+                            </div>
+                        </form>
+                        <div class="form-group">
+                            <label></label>
+                            <button class="btn btn-success btn-block " type="button" ng-click="updateAuto()" ng-disabled="autoDetailForm.$invalid">
+                                <i class="fa fa-save "></i>
+                                更新
+                            </button>
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="panel panel-inverse" data-sortable-id="form-stuff-3">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+                        </div>
+                        <h4 class="panel-title">附加说明</h4>
+                    </div>
+                    <div class="panel-body" style="display: block;">
+                        <form name="autoExtraForm"   role="form">
+                            <div class="rows" >
+                                <div class="col-xs-6" style="padding: 3px;">
+                                    <input type="number" class="form-control" ng-model="year" placeholder="车型年份，如2016" required >
+                                </div>
+                                <div class="col-xs-6" style="padding: 3px;">
+                                    <input type="text" class="form-control" ng-model="vol" placeholder="排量,例如4.2" required>
+                                </div>
+                            </div>
+                            <div class="rows" >
+                                <div class=" col-xs-6" style="padding: 3px;">
+                                    <input type="text" class="form-control" ng-model="item"  placeholder="英文款式说明" required>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="col-xs-6" style="padding: 3px;">
+                                        <select   class="form-control " style="width: 100%;margin-left: -15px;" ng-model ="type"  >
+                                            <option ng-repeat="type in typeArray" value="{{type.id}}" ng-selected="type==type.id">{{type.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6" style="padding: 3px;">
+                                        <button type="submit" class="btn btn-sm btn-success btn-block" ng-disabled="autoExtraForm.$invalid" ng-click="saveAutoExtra()">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" style="padding: 0" ng-repeat="extra in extraArray" >
+                            <div class="note note-info">
+                                <h4>
+                                    {{extra.year}}  {{extra.type==typeArray[0].id?typeArray[0].name:typeArray[1].name}} {{extra.vol|number:1}} {{extra.item}}
+                                    <span class="pull-right" ng-click="clickExtra(extra,$index)"><i class="fa fa-pencil"></i></span>
+                                </h4>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

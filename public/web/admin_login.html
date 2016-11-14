@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn" ng-app="mp_admin">
+<head>
+    <meta charset="utf-8"/>
+    <title>泓洋国际进口车采购管理平台</title>
+    <meta name="description" content="海鲜,时蔬"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/admin/assets/plugins/jquery-ui/css/jquery-ui.min.css" rel="stylesheet">
+    <link href="/admin/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/admin/assets/color_admin/css/style.min.css" rel="stylesheet">
+    <link href="/admin/assets/color_admin/css/style-responsive.min.css" rel="stylesheet">
+    <link href="/admin/assets/color_admin/css/animate.min.css" rel="stylesheet">
+    <link href="/admin/assets/color_admin/css/theme/default.css" rel="stylesheet">
+
+    <link href="/admin/assets/css/common.css" rel="stylesheet">
+
+
+</head>
+<body class="pace-top bg-white" ng-controller="loginController">
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader -->
+
+<!-- begin #page-container -->
+<div id="page-container" class="fade">
+    <!-- begin login -->
+    <div class="login login-with-news-feed">
+        <!-- begin news-feed -->
+        <div class="news-feed">
+            <div class="news-image">
+                <img src="/admin/assets/images/gallery-2.jpg" data-id="login-cover-image" alt="" />
+            </div>
+            <div class="news-caption">
+                <h4 class="caption-title"><i class="fa fa-diamond text-success"></i>泓洋国际进口车采购管理平台</h4>
+                <p>
+
+                </p>
+            </div>
+        </div>
+        <!-- end news-feed -->
+        <div id="content" class="content">
+            <div>
+                <div class="right-content">
+                    <!-- begin login-header -->
+                    <div class="login-header">
+                        <div class="brand">
+                            <span class="logo"></span> 用户登录
+                            <small>欢迎使用泓洋国际进口车采购管理平台</small>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-sign-in"></i>
+                        </div>
+                    </div>
+                    <!-- end login-header -->
+                    <!-- begin login-content -->
+                    <div class="login-content">
+                        <form class="margin-bottom-0">
+                            <div class="form-group m-b-15">
+                                <input type="text" ng-model="username" class="form-control input-lg" placeholder="用户名">
+                            </div>
+                            <div class="form-group m-b-15">
+                                <input type="password" ng-model="password" class="form-control input-lg" placeholder="密码">
+                            </div>
+                            <div class="checkbox m-b-30">
+                                <label>
+                                    <!--<input type="checkbox" /> Remember Me-->
+                                </label>
+                            </div>
+                            <div class="login-buttons">
+                                <button id="loginBtn" type="submit" class="btn btn-success btn-block btn-lg" ng-click="login()">登录</button>
+                            </div>
+                            <!--<div class="m-t-20 m-b-40 p-b-40">-->
+                            <!--还没有账号? 请点击这里 <a href="#/register.html" class="text-success">注册</a> 一个新用户.-->
+                            <!--</div>-->
+                            <hr />
+                            <p class="text-center text-inverse">
+                                <!--&copy; Color Admin All Right Reserved 2016-->
+                            </p>
+                        </form>
+                    </div>
+                    <!-- end login-content -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end login -->
+</div>
+<!-- end page container -->
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/jquery.form.js"></script>
+<script src="/admin/assets/plugins/jquery-ui/js/jquery-ui.min.js"></script>
+<script src="/admin/assets/plugins/jquery-ui/js/jquery-migrate.min.js"></script>
+<script src="/admin/assets/plugins/pace/js/pace.min.js"></script>
+<script src="/admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+<script src="/admin/assets/plugins/crossbrowserjs/html5shiv.js"></script>
+<script src="/admin/assets/plugins/crossbrowserjs/respond.min.js"></script>
+<script src="/admin/assets/plugins/crossbrowserjs/excanvas.min.js"></script>
+<![endif]-->
+<script src="/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/admin/assets/js/apps.js"></script>
+<script src="/js/lib/angular-1.4.3/angular.js"></script>
+<script src="/js/lib/jquery.cookie.min.js"></script>
+<script src="/js/lib/angular-1.4.3/angular-route.min.js"></script>
+<script src="/admin/service/global_function.js"></script>
+<script src="/admin/module/admin_module.js"></script>
+<script src="/admin/service/service.js"></script>
+<script src="/admin/service/directive.js"></script>
+<script src="/admin/controller/login_controller.js"></script>
+</html>

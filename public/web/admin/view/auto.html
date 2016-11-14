@@ -1,0 +1,109 @@
+<div>
+    <div class="rows">
+        <div class="col-xs-12">
+            <h3 class="header smaller lighter blue">管理车辆</h3>
+            <div class="col-xs-12" style="text-align: right;padding: 10px 18px;" ng-show="showAutoFlag">
+                <button class="btn btn-lg btn-info " ng-click="setShowFlag()"><i class="fa fa-plus-circle" style="padding-right: 3px;"></i>新增车辆信息</button>
+            </div>
+            <div class="rows" ng-show="showAutoFlag == false">
+                <div class="col-xs-12" >
+
+                    <form name="autoForm" class="form-horizontal" style="padding-top: 20px;" role="form">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg ">车辆中文名称</label>
+
+                            <div class="col-md-6">
+                                <input type="text" placeholder="必填，长度不超过20字" ng-model="nameCn" class="form-control input-lg" required maxlength="20">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg ">车辆英文名称</label>
+
+                            <div class="col-md-6">
+                                <input type="text" placeholder="必填，长度不超过20字" ng-model="nameEn" class="form-control input-lg" required maxlength="20">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg ">品牌信息</label>
+
+                            <div class="col-md-6">
+                                <select   class="form-control input-lg" style="padding-left:0;" ng-model ="brandId"  >
+                                    <option ng-repeat="brand in brandArray" value="{{brand.id}}">{{brand.name_cn}}|{{brand.name_en}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label input-lg">备注信息</label>
+
+                            <div class="col-md-6">
+                                <textarea placeholder="200字以内" style="padding-left: 4px;" rows="5" ng-model="remark" class="form-control input-lg" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-horizontal" style="padding: 0 0 0 10px;">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label input-lg ">车辆图片</label>
+
+                        <div class="col-md-6">
+                            <form id="uploadImageForm">
+                                <div class=" col-xs-12" ng-click="bindFile($event)" style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
+                                    <img  style="max-width:100%;left: auto;" src="/admin/assets/images/upload-icon.png">
+                                </div>
+                                <input name="image" type="file" onchange="angular.element(this).scope().uploadBrandImage(this)" max_size="4M" style="display: none;">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-inverse" type="reset" ng-click="setShowFlag()" >
+                                <i class="fa fa-close "></i>
+                                取消
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+
+                            <button class="btn btn-success" type="button" ng-click="addAuto()" ng-disabled="autoForm.$invalid">
+                                <i class="fa fa-check "></i>
+                                添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-xs-12"  ng-show="showAutoFlag">
+            <div class="table-header">
+                车辆列表
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover dataTable">
+                    <thead style="font-size: 18px;font-weight: bold;">
+                    <tr role="row">
+                        <th colspan="1" rowspan="1">ID</th>
+                        <th colspan="1" rowspan="1">中文名称</th>
+                        <th colspan="1" rowspan="1">英文名称</th>
+                        <th colspan="1" rowspan="1">品牌</th>
+                        <th colspan="1" rowspan="1"></th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-size: 16px;font-weight: bold;">
+                    <tr ng-repeat="auto in autoArray">
+                        <td>{{auto.id}}</td>
+                        <td>{{auto.name_cn}}</td>
+                        <td>{{auto.name_en}}</td>
+                        <td>{{auto.brand_cn}}|{{auto.brand_en}}</td>
+                        <td>
+                            <a class="btn btn-xs btn-info" title="编辑" href="/admin.html#/auto/{{auto.id}}"><i class="fa fa-pencil"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
