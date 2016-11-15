@@ -86,10 +86,26 @@ function getBrandCount(params,callback){
         return callback(error,rows);
     });
 }
+
+function getProducer(params ,callback){
+    var query = " select  *  from auto_producer " +
+        " where id is not null ";
+    var paramArray=[],i=0;
+    if(params.producerId){
+        paramArray[i++] = params.producerId;
+        query = query + " and id = ? ";
+    }
+
+    db.dbQuery(query,paramArray,function(error,rows){
+        logger.debug(' getProducer ');
+        return callback(error,rows);
+    });
+}
 module.exports ={
     addBrand : addBrand ,
     updateBrand : updateBrand ,
     updateBrandStatus : updateBrandStatus ,
     getBrand : getBrand ,
-    getBrandCount : getBrandCount
+    getBrandCount : getBrandCount ,
+    getProducer : getProducer
 }

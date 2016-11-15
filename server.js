@@ -15,9 +15,9 @@ var adminUser = require('./bl/AdminUser.js');
 var roleBase = require('./bl/RoleBase.js');
 var brand = require('./bl/Brand.js');
 var supplier = require('./bl/Supplier.js');
-var userInfo = require('./bl/UserInfo.js');
 var auto = require('./bl/Auto.js');
 var image = require('./bl/Image.js');
+var procure = require('./bl/Procure.js');
 
 
 ///--- API
@@ -134,6 +134,8 @@ function createServer() {
     server.put({path:'/api/admin/:adminId/brand/:brandId',contentType: 'application/json'} ,brand.updateBrand);
     server.get('/api/admin/:adminId/brand' , brand.queryBrand);
     server.get('/api/admin/:adminId/brandCount' , brand.queryBrandCount);
+    server.get('/api/admin/:adminId/producer' , brand.queryProducer);
+
 
     /**
      * Auto Module
@@ -148,6 +150,13 @@ function createServer() {
     server.put({path:'/api/admin/:adminId/extra/:extraId',contentType: 'application/json'} ,auto.updateAutoExtra);
     server.get('/api/admin/:adminId/autoCount' , auto.queryAutoCount);
 
+    /**
+     * Procure Module
+     */
+    server.get('/api/procure' , procure.queryProcure);
+    server.post({path:'/api/admin/:adminId/procure',contentType: 'application/json'},procure.createProcure);
+    server.put({path:'/api/admin/:adminId/procure/:procureId',contentType: 'application/json'} ,procure.updateProcure);
+    server.put('/api/admin/:adminId/procure/:procureId/status/:status' ,procure.updateProcureStatus);
 
     /**
      * Supplier Module
@@ -163,11 +172,6 @@ function createServer() {
      * User Modulexc
      */
         //admin
-    server.get('/api/admin/:adminId/user' ,roleBase.checkAdminToken,userInfo.getUserInfo);
-    server.put('/api/admin/:adminId/user/:userId/userType/:userType' ,roleBase.checkAdminToken,userInfo.updateUserType);
-    server.put('/api/admin/:adminId/user/:userId/userStatus/:userStatus' ,roleBase.checkAdminToken,userInfo.updateUserStatus);
-    server.put('/api/admin/:adminId/user/:userId/employee/:employeeId' ,roleBase.checkAdminToken,userInfo.updateUserEmployee);
-    server.put({path:'/api/admin/:adminId/user/:userId',contentType: 'application/json'} ,roleBase.checkAdminToken,userInfo.updateUser);
 
     server.on('NotFound', function (req, res, next) {
         logger.warn(req.url + " not found");

@@ -149,6 +149,38 @@ function updateAutoExtra(params,callback){
     });
 }
 
+function getAutoByExtra(params,callback){
+    var query = " select aie.id,aie.auto_id,aie.year,aie.vol,aie.item,aie.type, " +
+        " ai.name_cn,ai.name_en,ai.brand_id,ai.img,ai.remark,ab.brand_cn,ab.brand_en,ab.image " +
+        " from auto_info_extra aie left join auto_info ai on aie.auto_id = ai.id " +
+        " left join auto_brand ab on ai.brand_id=ab.id where aie.auto_id is not null ";
+    var paramArray=[],i=0;
+    if(params.autoId){
+        paramArray[i++] = params.autoId;
+        query = query + " and aie.auto_id = ? ";
+    }
+    if(params.extraId){
+        paramArray[i++] = params.extraId;
+        query = query + " and aie.id = ? ";
+    }
+    if(params.brandId){
+        paramArray[i++] = params.brandId;
+        query = query + " and ai.brand_id = ? ";
+    }
+    if(params.extraStatus){
+        paramArray[i++] = params.extraStatus;
+        query = query + " and aie.status = ? ";
+    }
+    if(params.autoStatus){
+        paramArray[i++] = params.autoStatus;
+        query = query + " and ai.status = ? ";
+    }
+    db.dbQuery(query,paramArray,function(error,rows){
+        logger.debug(' getAutoByExtra ');
+        return callback(error,rows);
+    });
+}
+
 module.exports ={
     addAuto : addAuto ,
     updateAuto : updateAuto ,
@@ -157,5 +189,6 @@ module.exports ={
     getAutoCount : getAutoCount ,
     getAutoExtra : getAutoExtra ,
     addAutoExtra : addAutoExtra ,
-    updateAutoExtra : updateAutoExtra
+    updateAutoExtra : updateAutoExtra ,
+    getAutoByExtra : getAutoByExtra
 }

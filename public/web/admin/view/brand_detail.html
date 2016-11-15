@@ -51,10 +51,10 @@
 
                         <div class="col-md-6">
                             <form id="uploadImageForm">
-                                <div class=" col-xs-12" ng-click="bindFile($event)" style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
-                                    <img  style="max-width:100%;left: auto;" src="/admin/assets/images/upload-icon.png">
+                                <div class=" col-xs-12"  style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
+                                    <img  style="max-width:100%;left: auto;"  ng-click="bindFile($event)" ng-src="{{image==null?'/admin/assets/images/upload-icon.png':'/api/image/'+image}}">
                                 </div>
-                                <input name="image" type="file" onchange="angular.element(this).scope().uploadBrandImage(this)" max_size="4M" style="display: none;">
+                                <input name="image" type="file" onchange="angular.element(this).scope().uploadBrandImage(this)"  max_size="4M" style="display: none;">
                             </form>
                         </div>
                     </div>

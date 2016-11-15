@@ -1,9 +1,10 @@
-app.controller("brandDetailController", ['$rootScope','$scope','$mpAjax','$location','$q','$routeParams',
+app.controller("brandDetailController", ['$rootScope','$scope','$mpAjax','$location','$q','$routeParams','$baseConfig',
 
-    function($rootScope,$scope,$mpAjax,$location,$q ,$routeParams) {
+    function($rootScope,$scope,$mpAjax,$location,$q ,$routeParams ,$baseConfig) {
         $scope.brandId = $routeParams.brandId;
+        $scope.defaultImage = $baseConfig.defaultImage;
         $scope.bindFile = function($event){
-            $($event.target).next().trigger('click');
+            $($event.target).parent().next().trigger('click');
         };
         $scope.uploadBrandImage = function(dom){
             var filename = $(dom).val();
@@ -28,10 +29,10 @@ app.controller("brandDetailController", ['$rootScope','$scope','$mpAjax','$locat
                 ErrorBox('支持的图片类型为. (jpeg,jpg,png,gif,svg,bmp,tiff)');
             }
             $currentDom = $(dom).prev();
-            $mpAjax.formPost($(dom).parent().parent(),'/admin/'+$rootScope.adminId+'/brand/'+$scope.brandId+"/image",function(data){
+            $mpAjax.formPost($(dom).parent(),'/admin/'+$rootScope.adminId+'/image?type='+$baseConfig.imageType.brandImage,function(data){
                 if(data.success){
-                    $currentDom.attr("src",'/api/image/'+data.imageId);
-                    $scope.url = data.imageId;
+                    $($currentDom.children()[0]).attr("src",'/api/image/'+data.imageId);
+                    $scope.image = data.imageId;
                 }else{
                     WarningBox('上传图片失败');
                 }

@@ -163,7 +163,7 @@ function saveImage(image,metaData,callback){
         Seq().seq(function(){
             var that = this;
             that();
-            preImage(image,this);
+            //preImage(image,this);
         }).seq(function(){
                 var gridStore = new GridStore(db, imageId, imageId+".jpeg", 'w', {content_type: image.type, metadata: metaData});
 

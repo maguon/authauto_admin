@@ -37,11 +37,11 @@
 
                             </fieldset>
                         </form>
-                        <form>
+                        <form class="uploadImageForm">
                             <div class="form-group">
                                 <label >图片</label>
-                                <div class=" col-xs-12" ng-click="bindFile($event)" style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
-                                    <img  style="max-width:100%;left: auto;" src="/admin/assets/images/upload-icon.png">
+                                <div class=" col-xs-12"  style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
+                                    <img  style="max-width:100%;left: auto;" ng-click="bindFile($event)" ng-src="{{img==null?'/admin/assets/images/upload-icon.png':'/api/image/'+img}}">
                                 </div>
                                 <input name="image" type="file" onchange="angular.element(this).scope().uploadBrandImage(this)" max_size="4M" style="display: none;">
                             </div>
