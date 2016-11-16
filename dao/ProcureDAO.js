@@ -32,7 +32,7 @@ function addProcure(params,callback){
 }
 
 function increaseProcureCount(params,callback){
-    var query = " update procure set count = count +1 where id = ? " ;
+    var query = " update procure_info set count = count +1 where id = ? " ;
     var paramArray=[],i=0;
     paramArray[i]=params.procureId;
     db.dbQuery(query,paramArray,function(error,rows){
@@ -42,7 +42,7 @@ function increaseProcureCount(params,callback){
 }
 
 function updateProcure(params,callback){
-    var query = " update procure set qty = ? ,remark = ? ,end = ? where id = ? " ;
+    var query = " update procure_info set qty = ? ,remark = ? ,end = ? where id = ? " ;
     var paramArray=[],i=0;
     paramArray[i++]=params.qty;
     paramArray[i++]=params.remark;
@@ -55,7 +55,7 @@ function updateProcure(params,callback){
 }
 
 function updateProcureStatus(params,callback){
-    var query = " update procure set status = ?  where id = ? " ;
+    var query = " update procure_info set status = ?  where id = ? " ;
     var paramArray=[],i=0;
     paramArray[i++]=params.status;
     paramArray[i]=params.procureId;
@@ -67,7 +67,7 @@ function updateProcureStatus(params,callback){
 
 
 function getProcure(params,callback){
-    var query = " select * from procure where id is not null ";
+    var query = " select * from procure_info where id is not null ";
     var paramArray=[],i=0;
     if(params.procureId){
         paramArray[i++] = params.procureId;

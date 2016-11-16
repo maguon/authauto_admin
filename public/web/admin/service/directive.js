@@ -19,7 +19,7 @@ app.directive('header', function() {
                 $mpAjax.setHeader($mpAjax.ADMIN_AUTH_NAME,adminToken);
             }
             //App.init();
-        },
+        }
     };
 });
 app.directive('mpDateFormat', ['$filter',function($filter) {

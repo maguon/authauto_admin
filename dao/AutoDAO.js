@@ -61,6 +61,10 @@ function getAuto(params,callback){
         paramArray[i++] = params.autoId;
         query = query + " and ai.id = ? ";
     }
+    if(params.brandId){
+        paramArray[i++] = params.brandId;
+        query = query + " and ai.brand_id = ? ";
+    }
     if(params.status){
         paramArray[i++] = params.status;
         query = query + " and ai.status = ? ";

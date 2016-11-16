@@ -10,15 +10,27 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
         $scope.brandArray = [];
         $scope.autoArray = [];
         $scope.extraArray = [];
+        $scope.procureArray = [];
+        $scope.getProcure = function(){
+            $mpAjax.get('/procure').then(function(data){
+                if(data.success){
+                    $scope.procureArray = data.result;
+                }else{
+                    WarningBox('è·å–é‡‡è´­ä¿¡æ¯é”™è¯¯')
+                }
+            }).catch(function(error){
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
+            })
+        }
         $scope.getBrand = function(){
             $mpAjax.get('/admin/'+this.$root.adminId+'/brand').then(function(data){
                 if(data.success){
                     $scope.brandArray = data.result;
                 }else{
-                    WarningBox('»ñÈ¡Æ·ÅÆĞÅÏ¢´íÎó')
+                    WarningBox('è·å–å“ç‰Œä¿¡æ¯é”™è¯¯')
                 }
             }).catch(function(error){
-                ErrorBox('·şÎñÆ÷ÄÚ²¿´íÎó');
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
             })
         }
         $scope.getAuto = function(brandId){
@@ -26,10 +38,10 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
                 if(data.success){
                     $scope.autoArray = data.result;
                 }else{
-                    WarningBox('»ñÈ¡³µÁ¾ĞÅÏ¢´íÎó')
+                    WarningBox('è·å–è½¦è¾†ä¿¡æ¯é”™è¯¯')
                 }
             }).catch(function(error){
-                ErrorBox('·şÎñÆ÷ÄÚ²¿´íÎó');
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
             })
         };
         $scope.getAutoExtra = function(autoId){
@@ -37,16 +49,33 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
                 if(data.success){
                     $scope.extraArray = data.result;
                 }else{
-                    WarningBox('»ñÈ¡³µÁ¾¸½¼ÓĞÅÏ¢´íÎó')
+                    WarningBox('è·å–è½¦è¾†é™„åŠ ä¿¡æ¯é”™è¯¯')
                 }
             }).catch(function(error){
-                ErrorBox('·şÎñÆ÷ÄÚ²¿´íÎó');
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
             })
         }
         $scope.addProcure = function(){
-            alert($scope.end);
+            var params = {
+                end : $scope.end,
+                extraId : $scope.extraId,
+                qty : $scope.qty,
+                remark: $scope.remark
+            };
+            console.log(params);
+            //return;
+            $mpAjax.post('/admin/'+this.$root.adminId+'/procure',params).then(function(data){
+                if(data.success) {
+                    SuccessBox('æ–°å¢é‡‡è´­ä¿¡æ¯æˆåŠŸ');
+                    $scope.getProcure();
+                }else{
+                    WarningBox('æ–°å¢é‡‡è´­ä¿¡æ¯å¤±è´¥')
+                }
+            }).catch(function(error){
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
+            })
         }
 
         $scope.getBrand();
-
+        $scope.getProcure();
     }])
