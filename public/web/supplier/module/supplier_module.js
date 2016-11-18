@@ -8,3 +8,4 @@ var app = angular.module("supplier", ['ngRoute']);
 app.config(['$httpProvider',function($httpProvider) {
     $httpProvider.defaults.headers.common["auth-token"] = $.cookie("user-token");
 }]);
+App.init();

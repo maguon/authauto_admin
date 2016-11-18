@@ -1,29 +1,70 @@
 
 <div>
-    <div>
-        <div id="header" class="header navbar navbar-fixed-top navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a href="/" class="navbar-brand" style="background-color: transparent"><span class="navbar-logo"></span>泓洋国际</a>
-                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+    <div class="header-v6 header-dark-transparent header-sticky">
+    <!-- Navbar -->
+    <div class="navbar mega-menu" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="menu-container">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Navbar Brand -->
+                <div class="navbar-brand">
+                    <a href="index.html">
+                        <img class="default-logo" src="/supplier/assets/unify/img/logo3-light.png" alt="Logo">
+                        <img class="shrink-logo" src="/supplier/assets/unify/img/logo3-dark.png" alt="Logo">
+                    </a>
                 </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown navbar-user">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/admin/assets/images/user-12.jpg"/>
-                            <span class="hidden-xs">管理员</span> <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu animated fadeInLeft">
-                            <li class="arrow"></li>
-                            <li><a ng-click="logOut()">退出</a></li>
+                <!-- ENd Navbar Brand -->
+                <div class="header-inner-right">
+                    <ul class="menu-icons-list">
+                        <ul class="nav navbar-nav">
+                            <li class="menu-icons shopping-cart"  ng-show="loginFlag" ng-click="showInfo()">
+                                <i class="menu-icons-style radius-x fa fa-bell"></i>
+                                <span class="badge">{{notifyCount}}</span>
+                            </li>
+                            <li class="menu-icons"  ng-show="loginFlag">
+                                <i class="menu-icons-style radius-x fa fa-user"></i>
+                            </li>
+                            <li class="menu-icons shopping-cart"  ng-show="loginFlag" ng-click="logOut()">
+                                <i class="menu-icons-style radius-x fa fa-power-off"></i>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
+                        <!--<li class="menu-icons shopping-cart">
+                            <i class="menu-icons-style radius-x fa fa-shopping-cart"></i>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <div class="menu-container">
+                    <ul class="nav navbar-nav">
+
+
+                        <li class="menu-icons shopping-cart"  >
+                            <i class="menu-icons-style radius-x fa fa-list-alt"></i>
+                            <span class="badge">0</span>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" ng-show="loginFlag==false">REGISTER</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" ng-show="loginFlag==false">LOGIN</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+    </div>
+
+
 </div>

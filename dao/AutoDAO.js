@@ -7,7 +7,7 @@ var logger = serverLogger.createLogger('BrandDAO.js');
 
 
 function addAuto(params,callback){
-    var query = " insert into auto_info (name_cn,name_en,brand_id,type,img,vol,remark) values (? , ? , ? , ? , ? , ? , ?)";
+    var query = " insert into auto_info (name_cn,name_en,brand_id,img,remark) values (? , ? , ? , ? , ? )";
     var paramArray=[],i=0;
     paramArray[i++]=params.nameCn;
     paramArray[i++]=params.nameEn;

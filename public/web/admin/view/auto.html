@@ -28,7 +28,7 @@
 
                             <div class="col-md-6">
                                 <select   class="form-control input-lg" style="padding-left:0;" ng-model ="brandId"  >
-                                    <option ng-repeat="brand in brandArray" value="{{brand.id}}">{{brand.name_cn}}|{{brand.name_en}}</option>
+                                    <option ng-repeat="brand in brandArray" value="{{brand.id}}">{{brand.brand_cn}}|{{brand.brand_en}}</option>
                                 </select>
                             </div>
                         </div>
@@ -49,8 +49,8 @@
 
                         <div class="col-md-6">
                             <form id="uploadImageForm">
-                                <div class=" col-xs-12" ng-click="bindFile($event)" style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
-                                    <img  style="max-width:100%;left: auto;" src="/admin/assets/images/upload-icon.png">
+                                <div class=" col-xs-12" style="padding:2px;border:1px solid #DDD;border: 1px dashed #aaa;border-radius: 4px; text-align: center;">
+                                    <img  style="max-width:100%;left: auto;" ng-click="bindFile($event)"  src="/admin/assets/images/upload-icon.png">
                                 </div>
                                 <input name="image" type="file" onchange="angular.element(this).scope().uploadBrandImage(this)" max_size="4M" style="display: none;">
                             </form>

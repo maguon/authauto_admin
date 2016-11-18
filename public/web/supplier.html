@@ -6,23 +6,39 @@
     <title>AuthAuto.com</title>
     <meta name="description" content=""/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+    <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/supplier/assets/unify/css/style.css" rel="stylesheet">
+    <link href="/supplier/assets/unify/css/app.css" rel="stylesheet">
+    <link href="/supplier/assets/unify/css/headers/header-v6.css" rel="stylesheet">
+    <link href="/supplier/assets/unify/css/shop.style.css" rel="stylesheet">
+    <link href="/supplier/assets/unify/css/log-reg-v3.css" rel="stylesheet">
+    <link href="/supplier/assets/unify/css/footers/footer-v7.css" rel="stylesheet">
 </head>
-<body>
-<header></header>
+<body class="header-fixed">
+
+    <header></header>
+    <div ng-view></div>
+    <footer></footer>
 </body>
 
 <script src="/js/lib/jquery.min.js"></script>
 <script src="/js/lib/jquery.form.js"></script>
 
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/supplier/assets/unify/js/app.js"></script>
 <script src="/js/lib/angular-1.4.3/angular.min.js"></script>
 <script src="/js/lib/jquery.cookie.min.js"></script>
-<script src="./js/lib/angular-1.4.3/angular-route.min.js"></script>
+<script src="/js/lib/angular-1.4.3/angular-route.min.js"></script>
 <script src="/supplier/module/supplier_module.js"></script>
 <script src="/supplier/service/supplier_route.js"></script>
 <script src="/supplier/service/directive.js"></script>
 <script src="/supplier/service/service.js"></script>
 <script src="/supplier/service/global_function.js"></script>
 <script src="/supplier/service/base_config.js"></script>
-<script src="/admin/controller/index_controller.js"></script>
+<script src="/supplier/controller/index_controller.js"></script>
+<script src="/supplier/controller/register_controller.js"></script>
+<script src="/supplier/controller/login_controller.js"></script>
 
 </html>
