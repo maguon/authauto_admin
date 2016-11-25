@@ -7,12 +7,13 @@ app.directive('header', function() {
         replace: true,
         transclude: false,
         restrict: 'E',
-        controller: function($scope, $element,$mpAjax,$rootScope){
+        controller: function($scope, $element,$mpAjax,$rootScope,$baseFunction){
             $scope.showInfo = function(){
                 alert('sss');
-            }
+            };
+            $rootScope.procureCount = $baseFunction.getCookieCart().length;
             $rootScope.notifyCount = 9;
-            $scope.loginFlag = true;
+            $scope.loginFlag = false;
             $scope.logOut = function(){
                 $mpAjax.removeCookie($mpAjax.USER_ID);
                 $mpAjax.removeCookie($mpAjax.USER_AUTH_NAME);

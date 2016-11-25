@@ -12,6 +12,9 @@ app.config(['$routeProvider',function($routeProvider) {
     }).when('/login', {
         templateUrl: '/supplier/view/login.html',
         controller:'loginController'
+    }).when('/checkout', {
+        templateUrl: '/supplier/view/checkout.html',
+        controller:'checkoutController'
     }).otherwise({
         templateUrl: '/supplier/view/index.html',
         controller:'indexController'

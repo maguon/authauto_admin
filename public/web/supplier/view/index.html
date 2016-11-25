@@ -10,114 +10,27 @@
             <h2>最新采购计划</h2>
         </div>
         <div class="row illustration-v2">
-            <div class="col-md-4 col-sm-6 md-margin-bottom-30">
+            <div class="col-md-4 col-sm-6 md-margin-bottom-30" style="padding-bottom: 20px;" ng-repeat="procure in procureArray">
                 <div class="product-img">
-                    <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="/supplier/assets/unify/img/img10.jpg" alt=""></a>
+                    <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="/api/image/{{procure.img}}" alt=""></a>
                     <a class="product-review" href="shop-ui-inner.html">快速报价</a>
-                    <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>加入到报价单</a>
+                    <a class="add-to-cart" ng-click="addCart(procure.id)"><i class="fa fa-shopping-cart"></i>加入到报价单</a>
                 </div>
                 <div class="product-description product-description-brd">
                     <div class="overflow-h margin-bottom-5">
                         <div class="pull-left">
-                            <h4 class="title-price"><a href="shop-ui-inner.html">Double-breasted</a></h4>
-                            <span class="gender text-uppercase">Woman</span>
-                            <span class="gender">Suits - Blazers</span>
+                            <h4 class="title-price"><a href="shop-ui-inner.html">{{procure.brand_en}}-{{procure.name_en}}</a></h4>
+                            <span class="gender text-uppercase">{{procure.extra_vol|number:1}}L</span>
+                            <span class="gender">{{procure.extra_type==typeArray[0].id?typeArray[0].name:typeArray[1].name}}</span>
+                            <span class="gender">{{procure.extra_year}}-{{procure.extra_item}}</span>
                         </div>
                         <div class="product-price">
-                            <span class="title-price">$95.00</span>
+                            <span class="title-price">Qty:{{procure.qty}}</span>
                         </div>
                     </div>
                     <ul class="list-inline product-ratings">
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 md-margin-bottom-30">
-                <div class="product-img">
-                    <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="/supplier/assets/unify/img/img10.jpg" alt=""></a>
-                    <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                    <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <div class="product-description product-description-brd">
-                    <div class="overflow-h margin-bottom-5">
-                        <div class="pull-left">
-                            <h4 class="title-price"><a href="shop-ui-inner.html">Double-breasted</a></h4>
-                            <span class="gender text-uppercase">Men</span>
-                            <span class="gender">Suits - Blazers</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="title-price">$60.00</span>
-                            <span class="title-price line-through">$95.00</span>
-                        </div>
-                    </div>
-                    <ul class="list-inline product-ratings">
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 md-margin-bottom-30">
-                <div class="product-img">
-                    <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="/supplier/assets/unify/img/img10.jpg" alt=""></a>
-                    <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                    <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    <div class="shop-rgba-red rgba-banner">Out of stock</div>
-                </div>
-                <div class="product-description product-description-brd">
-                    <div class="overflow-h margin-bottom-5">
-                        <div class="pull-left">
-                            <h4 class="title-price"><a href="shop-ui-inner.html">Double-breasted</a></h4>
-                            <span class="gender text-uppercase">Women</span>
-                            <span class="gender">Suits - Blazers</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="title-price">$95.00</span>
-                        </div>
-                    </div>
-                    <ul class="list-inline product-ratings">
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 md-margin-bottom-30">
-                <div class="product-img">
-                    <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="/supplier/assets/unify/img/img10.jpg" alt=""></a>
-                    <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                    <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    <div class="shop-rgba-dark-green rgba-banner">New</div>
-                </div>
-                <div class="product-description product-description-brd">
-                    <div class="overflow-h margin-bottom-5">
-                        <div class="pull-left">
-                            <h4 class="title-price"><a href="shop-ui-inner.html">Double-breasted</a></h4>
-                            <span class="gender text-uppercase">Men</span>
-                            <span class="gender">Suits - Blazers</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="title-price">$95.00</span>
-                        </div>
-                    </div>
-                    <ul class="list-inline product-ratings">
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
+                        <li style="color:lightseagreen;">{{procure.end|date:"MM/dd/yyyy"}}</li>
+                        <li class="like-icon"><a class="tooltips" ng-click="addCart(procure.id)"><i class="fa fa-plus-square"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -125,3 +38,4 @@
     </div>
 
 </div>
+

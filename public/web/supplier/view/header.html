@@ -15,7 +15,7 @@
 
                 <!-- Navbar Brand -->
                 <div class="navbar-brand">
-                    <a href="index.html">
+                    <a href="#/">
                         <img class="default-logo" src="/supplier/assets/unify/img/logo3-light.png" alt="Logo">
                         <img class="shrink-logo" src="/supplier/assets/unify/img/logo3-dark.png" alt="Logo">
                     </a>
@@ -50,14 +50,14 @@
 
                         <li class="menu-icons shopping-cart"  >
                             <i class="menu-icons-style radius-x fa fa-list-alt"></i>
-                            <span class="badge">0</span>
+                            <span class="badge">{{procureCount}}</span>
                         </li>
 
                         <li class="dropdown">
-                            <a href="javascript:void(0);" ng-show="loginFlag==false">REGISTER</a>
+                            <a href="#/register" ng-show="loginFlag==false">REGISTER</a>
                         </li>
                         <li class="dropdown">
-                            <a href="javascript:void(0);" ng-show="loginFlag==false">LOGIN</a>
+                            <a href="#/login" ng-show="loginFlag==false">LOGIN</a>
                         </li>
                     </ul>
                 </div>

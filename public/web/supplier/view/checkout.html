@@ -1,0 +1,189 @@
+<div>
+    <div class="interactive-slider-v2">
+        <div class="container">
+            <h1>Welcome to AUTHAUTO</h1>
+            <p>开放透明的高端汽车交易平台</p>
+        </div>
+    </div>
+    <div class="content-md margin-bottom-30">
+        <div class="container">
+            <form class="shopping-cart" action="#" novalidate="novalidate">
+
+
+                <div role="application" class="wizard clearfix" ng-if="step==1">
+                    <div class="steps clearfix">
+                        <ul role="tablist">
+                            <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
+                                <a><span
+                                        class="current-info audible">current step: </span><span class="number">1.</span>
+                                    <div class="overflow-h">
+                                        <h2>Offer list</h2>
+                                        <p>Review &amp; edit your offers</p>
+                                        <i class="rounded-x fa fa-check"></i>
+                                    </div>
+                                </a></li>
+                            <li role="tab" class="disabled" aria-disabled="true">
+                                <a>
+                                    <span class="number">2.</span>
+                                    <div class="overflow-h">
+                                        <h2>Extra service</h2>
+                                        <p>Shipping and address info</p>
+                                        <i class="rounded-x fa fa-cogs"></i>
+                                    </div>
+                                </a></li>
+                            <li role="tab" class="disabled last" aria-disabled="true">
+                                <a >
+                                    <span class="number">3.</span>
+                                    <div class="overflow-h">
+                                        <h2>Success</h2>
+                                        <p>Wating for the bidding end</p>
+                                        <i class="rounded-x fa fa-flag"></i>
+                                    </div>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <div class="content clearfix">
+                        <section id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
+                            <div class="rows" ng-if="procureArray.length ==0">
+                                <div style="text-align: center">
+                                    <h2 class="title-type">Your offer list is empty.</h2>
+                                </div>
+                            </div>
+                            <div class="table-responsive" ng-if="procureArray.length>0">
+                                <table class="table table-striped" >
+                                    <thead>
+                                    <tr>
+                                        <th>Auto</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="procure in procureArray">
+                                        <td class="product-in-table">
+                                            <img class="img-responsive" src="/api/image/{{procure.img}}" alt="">
+                                            <div class="product-it-in">
+                                                <h3>{{procure.brand_en}}-{{procure.name_en}}</h3>
+                                                <span>{{procure.extra_type==typeArray[0].id?typeArray[0].name:typeArray[1].name}}</span>
+                                                <span>{{procure.extra_vol|number:1}}L</span>
+                                                <span>{{procure.extra_year}}-{{procure.extra_item}}</span>
+                                            </div>
+                                        </td>
+                                        <td><input type="number" ng-model="procure.price" class="required"></td>
+                                        <td>
+
+                                            <input type="number" ng-model="procure.qty" max="{{procure.qty}}">
+                                        </td>
+                                        <td class="shop-red">${{procure.price*procure.qty || 0}}</td>
+                                        <td>
+                                            <button type="button" ng-click="removeTempProcure" class="close"><span>×</span><span class="sr-only">Close</span></button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="actions clearfix">
+                        <ul aria-label="Pagination">
+                            <li class="disabled" aria-disabled="true"><a ng-click="doPre()" >Previous</a></li>
+                            <li  style="display: block;"><a ng-click="doNext()">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div role="application" class="wizard clearfix" ng-if="step==2">
+                    <div class="steps clearfix">
+                        <ul role="tablist">
+                            <li role="tab" class="first done" aria-disabled="false" aria-selected="true">
+                                <a><span
+                                        class="current-info audible">current step: </span><span class="number">1.</span>
+                                    <div class="overflow-h">
+                                        <h2>Offer list</h2>
+                                        <p>Review &amp; edit your offers</p>
+                                        <i class="rounded-x fa fa-check"></i>
+                                    </div>
+                                </a></li>
+                            <li role="tab" class="current" aria-disabled="true">
+                                <a>
+                                    <span class="number">2.</span>
+                                    <div class="overflow-h">
+                                        <h2>Extra service</h2>
+                                        <p>Shipping and address info</p>
+                                        <i class="rounded-x fa fa-cogs"></i>
+                                    </div>
+                                </a></li>
+                            <li role="tab" class="disabled last" aria-disabled="true">
+                                <a >
+                                    <span class="number">3.</span>
+                                    <div class="overflow-h">
+                                        <h2>Success</h2>
+                                        <p>Waiting for the bidding end</p>
+                                        <i class="rounded-x fa fa-flag"></i>
+                                    </div>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <div class="content clearfix">
+                        <section></section>
+                    </div>
+                    <div class="actions clearfix">
+                        <ul>
+                            <li ><a ng-click="doPre()" >Previous</a></li>
+                            <li  style="display: block;"><a ng-click="doNext()">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div role="application" class="wizard clearfix" ng-if="step==3">
+                    <div class="steps clearfix">
+                        <ul role="tablist">
+                            <li role="tab" class="first done" aria-disabled="false" aria-selected="true">
+                                <a><span
+                                        class="current-info audible">current step: </span><span class="number">1.</span>
+                                    <div class="overflow-h">
+                                        <h2>Offer list</h2>
+                                        <p>Review &amp; edit your offers</p>
+                                        <i class="rounded-x fa fa-check"></i>
+                                    </div>
+                                </a></li>
+                            <li role="tab" class="done" aria-disabled="true">
+                                <a>
+                                    <span class="number">2.</span>
+                                    <div class="overflow-h">
+                                        <h2>Extra service</h2>
+                                        <p>Shipping and address info</p>
+                                        <i class="rounded-x fa fa-cogs"></i>
+                                    </div>
+                                </a></li>
+                            <li role="tab" class="last current" aria-disabled="true">
+                                <a >
+                                    <span class="number">3.</span>
+                                    <div class="overflow-h">
+                                        <h2>Success</h2>
+                                        <p>Wating for the bidding end</p>
+                                        <i class="rounded-x fa fa-flag"></i>
+                                    </div>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <div class="content clearfix">
+                        <section>
+                            We have received your request for a 2017 Audi SQ5. Your confirmation# is 67651072. You'll be hearing from the following dealership, usually within 24 hrs.
+                        </section>
+                    </div>
+                    <div class="actions clearfix">
+                        <ul>
+                            <li ><a ng-click="doPre()" >Previous</a></li>
+                            <li  style="display: block;"><a ng-click="doNext()">Finish</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div><!--/end container-->
+    </div>
+</div>
+
+
