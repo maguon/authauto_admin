@@ -5,10 +5,10 @@ var logger = serverLogger.createLogger('SupplierRelDAO');
 function addSupplierProdTypeRel(params,callback){
     var query = " insert into supplier_prod_type_rel (supplier_id,prod_type_id) " +
         "  values (? , ?  )";
-    var paramArray=[],i=0;
-    paramArray[i++]=params.supplierId;
-    paramArray[i]=params.prodTypeId;
-    db.dbQuery(query,paramArray,function(error,rows){
+    var paramsArray=[],i=0;
+    paramsArray[i++]=params.supplierId;
+    paramsArray[i]=params.prodTypeId;
+    db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' addSupplierProdTypeRel ');
         return callback(error,rows);
     });
@@ -16,10 +16,10 @@ function addSupplierProdTypeRel(params,callback){
 function addSupplierProdRel(params,callback){
     var query = " insert into supplier_prod_rel (supplier_id,prod_id) " +
         "  values (? , ? )";
-    var paramArray=[],i=0;
-    paramArray[i++]=params.supplierId;
-    paramArray[i]=params.prodId;
-    db.dbQuery(query,paramArray,function(error,rows){
+    var paramsArray=[],i=0;
+    paramsArray[i++]=params.supplierId;
+    paramsArray[i]=params.prodId;
+    db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' addSupplierProdRel ');
         return callback(error,rows);
     });
@@ -27,10 +27,10 @@ function addSupplierProdRel(params,callback){
 
 function deleteSupplierProdTypeRel(params,callback){
     var query = " delete from supplier_prod_type_rel where supplier_id=? and prod_type_id=? " ;
-    var paramArray=[],i=0;
-    paramArray[i++]=params.supplierId;
-    paramArray[i]=params.prodTypeId;
-    db.dbQuery(query,paramArray,function(error,rows){
+    var paramsArray=[],i=0;
+    paramsArray[i++]=params.supplierId;
+    paramsArray[i]=params.prodTypeId;
+    db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' deleteSupplierProdTypeRel ');
         return callback(error,rows);
     });
@@ -38,13 +38,13 @@ function deleteSupplierProdTypeRel(params,callback){
 
 function deleteSupplierProdRel(params,callback){
     var query = " delete from supplier_prod_rel where  prod_id=?  " ;
-    var paramArray=[],i=0;
-    paramArray[i++]=params.prodId;
+    var paramsArray=[],i=0;
+    paramsArray[i++]=params.prodId;
     if(params.supplierId){
-        paramArray[i++] = params.supplierId;
+        paramsArray[i++] = params.supplierId;
         query = query + " and supplier_id=? ";
     }
-    db.dbQuery(query,paramArray,function(error,rows){
+    db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' deleteSupplierProdRel ');
         return callback(error,rows);
     });
@@ -56,16 +56,16 @@ function getSupplierProdTypeRel(params,callback){
         " from supplier_prod_type_rel sptr left join supplier s on sptr.supplier_id = s.id " +
         " left join prod_type pt on pt.id = sptr.prod_type_id " +
         " where sptr.id is not null " ;
-    var paramArray=[],i=0;
+    var paramsArray=[],i=0;
     if(params.supplierId){
-        paramArray[i++] = params.supplierId;
+        paramsArray[i++] = params.supplierId;
         query = query + " and sptr.supplier_id=? ";
     }
     if(params.prodTypeId){
-        paramArray[i++] = params.prodTypeId;
+        paramsArray[i++] = params.prodTypeId;
         query = query + " and sptr.prod_type_id = ? ";
     }
-    db.dbQuery(query,paramArray,function(error,rows){
+    db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' getSupplierProdTypeRel ');
         return callback(error,rows);
     });
@@ -80,16 +80,16 @@ function getSupplierProdRel(params,callback){
         " from supplier_prod_rel spr left join supplier s on spr.supplier_id = s.id " +
         " left join prod p on p.id = spr.prod_id " +
         " where spr.id is not null " ;
-    var paramArray=[],i=0;
+    var paramsArray=[],i=0;
     if(params.supplierId){
-        paramArray[i++] = params.supplierId;
+        paramsArray[i++] = params.supplierId;
         query = query + " and spr.supplier_id=? ";
     }
     if(params.prodId){
-        paramArray[i++] = params.prodId;
+        paramsArray[i++] = params.prodId;
         query = query + " and spr.prod_id = ? ";
     }
-    db.dbQuery(query,paramArray,function(error,rows){
+    db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' getSupplierProdTypeRel ');
         return callback(error,rows);
     });
@@ -97,12 +97,12 @@ function getSupplierProdRel(params,callback){
 
 function updateProdSupplierRel(params,callback){
     var query = "update supplier_prod_rel set supplier_id = ? where prod_id = ? " ;
-    var paramArray=[],i=0;
+    var paramsArray=[],i=0;
 
-    paramArray[i++] = params.supplierId;
-    paramArray[i++] = params.prodId;
+    paramsArray[i++] = params.supplierId;
+    paramsArray[i++] = params.prodId;
 
-    db.dbQuery(query,paramArray,function(error,rows){
+    db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' updateProdSupplierRel ');
         return callback(error,rows);
     });

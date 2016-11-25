@@ -39,7 +39,25 @@ app.directive('footer', function() {
         transclude: false,
         restrict: 'E',
         controller: function($scope, $element,$mpAjax,$rootScope){
-
+            $scope.createFeedback = function(){
+                var params = {
+                    name : $scope.name,
+                    email : $scope.email,
+                    content : $scope.content
+                }
+                $mpAjax.post('/feedback',params).then(function(data){
+                    if(data.success){
+                        $scope.name = "";
+                        $scope.email = "";
+                        $scope.content = "";
+                        SuccessBox('Send feedback success');
+                    }else{
+                        WarningBox('Send feedback failed')
+                    }
+                }).catch(function(error){
+                    ErrorBox('Server internal error');
+                })
+            }
         }
     };
 });

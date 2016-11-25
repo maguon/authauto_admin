@@ -1,0 +1,26 @@
+<div>
+    <div class="rows">
+        <div class="col-xs-12">
+            <h3 class="header smaller lighter blue">反馈信息</h3>
+            <h3>&nbsp;</h3>
+        </div>
+    </div>
+    <div class="rows">
+        <ul class="media-list media-list-with-divider media-messaging" style="padding-top: 10px;">
+            <li class="media media-sm" ng-repeat="feedback in feedbackArray">
+                <a class="pull-left" style="padding-top: 3px;" ng-if="feedback.status==1">
+                    <i class="fa fa-info-circle "  style="font-size: 40px;color: #f59c1a;"
+                       ng-click="updateFeedbackStatus(feedback.id,$index)"></i>
+                </a>
+                <a class="pull-left" style="padding-top: 3px;" ng-if="feedback.status!=1">
+                    <i class="fa fa-check-circle "  style="font-size: 40px;color: #00acac;"></i>
+                </a>
+                <div class="media-body">
+                    <h5 class="media-heading">{{feedback.name}}</h5>
+                    <h5 class="media-heading">{{feedback.email}}</h5>
+                    <p>{{feedback.content}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

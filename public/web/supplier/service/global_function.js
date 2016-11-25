@@ -1,3 +1,45 @@
+function _BaseBox(boxClass,iconClass,msg,setting) {
+    setting = setting || {};
+    var box = $('<div class="col-xs-12" style="">');
+
+    var content = '';
+    content += '<button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove fa-2x"></i></button>';
+    content += '<strong style="position: absolute;margin-top: -2px;"><i class="'+iconClass+'"></i></strong>';
+    content += '<span style="display:inline-block;max-width:500px;margin:0px 0px 0px 35px;font-size: 18px;">';
+    content += msg;
+    content += '</span>';
+
+    box.html(content);
+    $(document).find('body').append(box);
+
+    box.addClass(boxClass);
+    box.css({position:'fixed','z-index':9999,display:'none',top:'0px'});
+    //var rect = GetBoxPosition(box);
+    //console.log(rect);
+    //box.css(rect);
+    box.fadeIn(500);
+
+    var timeout = 3000;
+    if(setting.timeout)
+        timeout = setting.timeout;
+
+    box.children('.close').click(function(){
+        if(this && this.parentNode) {
+            box[0].outerHTML = ''
+        }
+    });
+
+    if(!setting.stick) {
+        if(timeout>0) {
+            setTimeout(function(){
+                box.fadeOut(1000,function(){
+                    if(this.parentNode)
+                        this.outerHTML = '';
+                });
+            },timeout);
+        }
+    }
+}
 function WarningBox(msg,setting) {
     var boxClass = 'alert alert-block alert-warning center';
     var iconClass = 'fa fa-warning fa-2x';

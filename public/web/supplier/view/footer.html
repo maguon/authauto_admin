@@ -13,13 +13,13 @@
                 </div>
 
                 <div class="col-md-6">
-                    <form action="assets/php/sky-forms-pro/demo-contacts-process.php" method="post" id="sky-form3" class="sky-form contact-style" novalidate="novalidate">
+                    <form  class="sky-form contact-style" novalidate="novalidate" name="feedbackForm">
                         <fieldset>
                             <label>Name</label>
                             <div class="row">
                                 <div class="col-md-7 margin-bottom-20 col-md-offset-0">
                                     <div>
-                                        <input type="text" name="name" id="name" class="form-control">
+                                        <input type="text" ng-model="name" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-md-7 margin-bottom-20 col-md-offset-0">
                                     <div>
-                                        <input type="text" name="email" id="email" class="form-control">
+                                        <input type="email" ng-model="email" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -37,12 +37,12 @@
                             <div class="row">
                                 <div class="col-md-11 margin-bottom-20 col-md-offset-0">
                                     <div>
-                                        <textarea rows="4" name="feedback" id="feedback" class="form-control"></textarea>
+                                        <textarea rows="4" ng-model="content" class="form-control" required></textarea>
                                     </div>
                                 </div>
                             </div>
 
-                            <p><button type="submit" class="btn-u btn-brd btn-brd-hover btn-u-dark">Send Feedback</button></p>
+                            <p><button type="submit" class="btn-u btn-brd btn-brd-hover btn-u-dark" ng-disabled="feedbackForm.$invalid" ng-click="createFeedback()">Send Feedback</button></p>
                         </fieldset>
                     </form>
                 </div>

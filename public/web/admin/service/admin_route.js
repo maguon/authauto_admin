@@ -31,6 +31,10 @@ app.config(['$routeProvider',function($routeProvider) {
             templateUrl: '/admin/view/procure.html',
             controller:'procureController'
         })
+        .when('/feedback', {
+            templateUrl: '/admin/view/feedback.html',
+            controller:'feedbackController'
+        })
         .otherwise({
             templateUrl: '/admin/view/index.html',
             controller:'indexController'

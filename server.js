@@ -18,6 +18,7 @@ var supplier = require('./bl/Supplier.js');
 var auto = require('./bl/Auto.js');
 var image = require('./bl/Image.js');
 var procure = require('./bl/Procure.js');
+var feedback = require('./bl/Feedback.js');
 
 
 ///--- API
@@ -125,7 +126,12 @@ function createServer() {
      */
     server.get('/api/image/:imageId',image.getImageById);
     server.post({path:'/api/admin/:adminId/image',contentType: 'multipart/form-data'}, image.uploadImage);
-
+    /**
+     * Feedback Module
+     */
+    server.post({path:'/api/feedback',contentType: 'application/json'},feedback.createFeedback);
+    server.put('/api/admin/:adminId/feedback/:feedbackId/status/:status',feedback.updateFeedbackStatus);
+    server.get('/api/admin/:adminId/feedback' , feedback.queryFeedback);
 
     /**
      * Brand Module
