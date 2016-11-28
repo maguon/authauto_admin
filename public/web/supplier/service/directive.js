@@ -17,7 +17,8 @@ app.directive('header', function() {
             $scope.logOut = function(){
                 $mpAjax.removeCookie($mpAjax.USER_ID);
                 $mpAjax.removeCookie($mpAjax.USER_AUTH_NAME);
-                window.location.href='supplier_login.html';
+                $scope.loginFlag=false;
+                window.location.href='#/login';
             }
             var userId = $mpAjax.getCookie($mpAjax.USER_ID);
             var userToken = $mpAjax.getCookie($mpAjax.USER_AUTH_NAME);

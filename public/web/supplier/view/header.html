@@ -48,16 +48,16 @@
                     <ul class="nav navbar-nav">
 
 
-                        <li class="menu-icons shopping-cart"  >
+                        <li class="menu-icons shopping-cart" ng-click="linkToCheckout" >
                             <i class="menu-icons-style radius-x fa fa-list-alt"></i>
                             <span class="badge">{{procureCount}}</span>
                         </li>
 
                         <li class="dropdown">
-                            <a href="#/register" ng-show="loginFlag==false">REGISTER</a>
+                            <a href="#/register" ng-show="loginFlag==false" style="font-family: Serif;">Sign up</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#/login" ng-show="loginFlag==false">LOGIN</a>
+                            <a href="#/login" ng-show="loginFlag==false" style="font-family: Serif;">Login</a>
                         </li>
                     </ul>
                 </div>

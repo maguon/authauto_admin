@@ -1,7 +1,7 @@
 app.factory('$mpAjax',['$http','$location','$q',function($http,$location,$q){
     var _this = {};
     //_this.AUTH_NAME = "auth-token";
-    _this.CUST_AUTH_NAME = "auth-token";
+    _this.USER_AUTH_NAME = "auth-token";
     _this.COMMON_AUTH_NAME ='auth-token';
     _this.USER_ID = "user-id";
     _this.USER_STATUS = "status";

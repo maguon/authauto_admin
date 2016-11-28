@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="col-md-5">
-                    <form id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+                    <form name="regForm" class="log-reg-block sky-form" >
                         <h2>Create New Account</h2>
 
                         <div class="login-input reg-input">
@@ -42,20 +42,20 @@
                                 <div class="col-sm-6">
                                     <section>
                                         <label class="input">
-                                            <input type="text"  placeholder="First name" class="form-control">
+                                            <input type="text" ng-model="firstName"  placeholder="First name" class="form-control" required>
                                         </label>
                                     </section>
                                 </div>
                                 <div class="col-sm-6">
                                     <section>
                                         <label class="input">
-                                            <input type="text"  placeholder="Last name" class="form-control">
+                                            <input type="text" ng-model="lastName" placeholder="Last name" class="form-control" required>
                                         </label>
                                     </section>
                                 </div>
                             </div>
                             <label class="select margin-bottom-15">
-                                <select name="gender" class="form-control">
+                                <select name="gender" class="form-control" ng-model="gender" ng-select="gender" required>
                                     <option selected="" disabled="">Gender</option>
                                     <option value="1">Male</option>
                                     <option value="0">Female</option>
@@ -63,17 +63,17 @@
                             </label>
                             <section>
                                 <label class="input">
-                                    <input type="email" placeholder="Email address" class="form-control">
+                                    <input type="email" ng-model="email" placeholder="Email address" class="form-control"  required>
                                 </label>
                             </section>
                             <section>
                                 <label class="input">
-                                    <input type="password"  placeholder="Password"  class="form-control">
+                                    <input type="password" ng-model="password" placeholder="Password , at least 6 characters"  class="form-control" required maxlength="20" minlength="6">
                                 </label>
                             </section>
                             <section>
                                 <label class="input">
-                                    <input type="password"  placeholder="Confirm password" class="form-control">
+                                    <input type="password" ng-model="confirmPassword" placeholder="Confirm password" class="form-control" required>
                                 </label>
                             </section>
                         </div>
@@ -84,11 +84,11 @@
                             Subscribe to our newsletter to get the latest offers
                         </label>
                         <label class="checkbox margin-bottom-20">
-                            <input type="checkbox" name="checkbox">
+                            <input type="checkbox" name="checkbox" ng-model="agreeFlag">
                             <i></i>
                             I have read agreed with the <a href="#">terms &amp; conditions</a>
                         </label>
-                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">Create Account</button>
+                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" id="regBtn"  ng-click="register()">Create Account</button>
                     </form>
 
                     <div class="margin-bottom-20"></div>

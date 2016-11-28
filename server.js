@@ -19,6 +19,7 @@ var auto = require('./bl/Auto.js');
 var image = require('./bl/Image.js');
 var procure = require('./bl/Procure.js');
 var feedback = require('./bl/Feedback.js');
+var user = require('./bl/User.js');
 
 
 ///--- API
@@ -177,6 +178,10 @@ function createServer() {
     /**
      * User Modulexc
      */
+    server.get('/api/admin/:adminId/user' , user.queryUser);
+    server.get('/api/admin/:adminId/userCount' , user.queryUserCount);
+    server.post('/api/userLogin' , user.userLogin);
+    server.post('/api/user' , user.userRegister);
         //admin
 
     server.on('NotFound', function (req, res, next) {

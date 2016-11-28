@@ -10,10 +10,10 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
                 if(data.success){
                     $scope.procureArray = data.result;
                 }else{
-                    WarningBox('获取采购信息错误')
+                    WarningBox('Query procure info error')
                 }
             }).catch(function(error){
-                ErrorBox('服务器内部错误');
+                ErrorBox('Service internal error');
             })
         };
         $scope.removeTempProcure = function(id){

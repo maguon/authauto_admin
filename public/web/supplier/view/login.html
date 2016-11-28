@@ -31,14 +31,15 @@
                 </div>
 
                 <div class="col-md-5">
-                    <form id="sky-form1" class="log-reg-block sky-form" novalidate="novalidate">
-                        <h2>Log in to your account</h2>
+                    <form name="loginForm" class="log-reg-block sky-form">
+                        <fieldset>
+                        <h2>Login to your account</h2>
 
                         <section>
                             <label class="input login-input">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="email" placeholder="Email Address" name="email" class="form-control">
+                                    <input type="email" placeholder="Email Address" ng-model="email" class="form-control" required>
                                 </div>
                             </label>
                         </section>
@@ -46,7 +47,7 @@
                             <label class="input login-input no-border-top">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                    <input type="password" placeholder="Password" name="password" class="form-control">
+                                    <input type="password" placeholder="Password" ng-model="password" class="form-control" required>
                                 </div>
                             </label>
                         </section>
@@ -62,9 +63,9 @@
                                 <a href="#">Forget your Password?</a>
                             </div>
                         </div>
-                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">Log in</button>
+                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" id="loginBtn" type="submit" ng-disabled="loginForm.$invalid" ng-click="login()">Login</button>
 
-
+                        </fieldset>
                     </form>
 
                     <div class="margin-bottom-20"></div>

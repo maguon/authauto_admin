@@ -4,7 +4,6 @@ var sysError = require('../util/SystemError.js');
 var resUtil = require('../util/ResponseUtil.js');
 var listOfValue = require('../util/ListOfValue.js');
 var supplierDAO = require('../dao/SupplierDAO.js');
-var supplierRelDAO = require('../dao/SupplierRelDAO.js');
 var Seq = require('seq');
 var serverLogger = require('../util/ServerLogger.js');
 var logger = serverLogger.createLogger('Supplier.js');
