@@ -4,30 +4,23 @@ app.controller("passwordController", ['$rootScope','$scope','$mpAjax','$location
 
 
         $scope.changePassword = function(){
-
-            if($scope.username ==null || $scope.password == null || $scope.username=='' || $scope.password == '' ){
-                InfoBox('ÇëÊäÈëÓÃ»§ÃûºÍÃÜÂë');
-                return;
-            }
-            $('#loginBtn')[0].disabled = true;
+            $('#passwordBtn')[0].disabled = true;
             var params = {
-                username : $scope.username,
-                password : $scope.password
+                newPassword : $scope.newPassword,
+                originPassword : $scope.originPassword
             }
-            $mpAjax.post('/admin/do/login',params).then(function(data){
-                $('#loginBtn')[0].disabled = false;
+            $mpAjax.put('/admin/'+this.$root.adminId+'/password',params).then(function(data){
+                $('#passwordBtn')[0].disabled = false;
                 if(data.success){
-                    $mpAjax.setCookie($mpAjax.ADMIN_AUTH_NAME ,data.result.accessToken);
-                    $mpAjax.setCookie($mpAjax.ADMIN_ID ,data.result.userId);
-                    $mpAjax.setCookie($mpAjax.ADMIN_STATUS ,data.result.userStatus);
-                    window.location.href ='/admin.html';
+                    InfoBox('ä¿®æ”¹å¯†ç æˆåŠŸ')
                 }else{
                     WarningBox(data.msg);
                 }
+                $scope.newPassword = '';
+                $scope.originPassword = '';
             }).catch(function(error){
-                $('#loginBtn')[0].disabled = false;
-                ErrorBox('·şÎñÆ÷ÄÚ²¿´íÎó');
+                $('#passwordBtn')[0].disabled = false;
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
             })
         }
-
     }])

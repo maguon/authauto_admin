@@ -9,6 +9,7 @@ var listOfValue = require('../util/ListOfValue.js');
 var oAuthUtil = require('../util/OAuthUtil.js');
 var adminUserDao = require('../dao/AdminUserDAO.js');
 var serverLogger = require('../util/ServerLogger.js');
+var Seq = require('seq');
 var logger = serverLogger.createLogger('Admin.js');
 
 function adminUserLogin(req,res,next){
