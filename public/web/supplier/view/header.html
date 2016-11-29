@@ -24,11 +24,11 @@
                 <div class="header-inner-right">
                     <ul class="menu-icons-list">
                         <ul class="nav navbar-nav">
-                            <li class="menu-icons shopping-cart"  ng-show="loginFlag" ng-click="showInfo()">
+                            <li class="menu-icons shopping-cart"  ng-show="loginFlag" ng-click="toNotify()">
                                 <i class="menu-icons-style radius-x fa fa-bell"></i>
                                 <span class="badge">{{notifyCount}}</span>
                             </li>
-                            <li class="menu-icons"  ng-show="loginFlag">
+                            <li class="menu-icons"  ng-show="loginFlag" ng-click="toUser()">
                                 <i class="menu-icons-style radius-x fa fa-user"></i>
                             </li>
                             <li class="menu-icons shopping-cart"  ng-show="loginFlag" ng-click="logOut()">
@@ -48,7 +48,7 @@
                     <ul class="nav navbar-nav">
 
 
-                        <li class="menu-icons shopping-cart" ng-click="linkToCheckout" >
+                        <li class="menu-icons shopping-cart" ng-click="toCheckout()" >
                             <i class="menu-icons-style radius-x fa fa-list-alt"></i>
                             <span class="badge">{{procureCount}}</span>
                         </li>

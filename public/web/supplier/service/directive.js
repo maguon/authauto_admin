@@ -14,6 +14,15 @@ app.directive('header', function() {
             $rootScope.procureCount = $baseFunction.getCookieCart().length;
             $rootScope.notifyCount = 9;
             $scope.loginFlag = false;
+            $scope.toNotify = function(){
+                window.location.href='#/notify';
+            }
+            $scope.toUser = function(){
+                window.location.href='#/user';
+            }
+            $scope.toCheckout = function(){
+                window.location.href='#/checkout';
+            }
             $scope.logOut = function(){
                 $mpAjax.removeCookie($mpAjax.USER_ID);
                 $mpAjax.removeCookie($mpAjax.USER_AUTH_NAME);
