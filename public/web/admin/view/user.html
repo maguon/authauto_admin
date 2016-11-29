@@ -12,12 +12,11 @@
                     <thead style="font-size: 18px;font-weight: bold;">
                     <tr role="row">
                         <th colspan="1" rowspan="1">ID</th>
-                        <th colspan="1" rowspan="1">用户昵称</th>
-                        <th colspan="1" rowspan="1">用户头像</th>
+                        <th colspan="1" rowspan="1">用户姓名</th>
+                        <th colspan="1" rowspan="1">邮箱</th>
+                        <th colspan="1" rowspan="1">电话</th>
                         <th colspan="1" rowspan="1">性别</th>
                         <th colspan="1" rowspan="1">用户类型</th>
-                        <th colspan="1" rowspan="1">推荐人</th>
-                        <th colspan="1" rowspan="1">备注信息</th>
                         <th colspan="1" rowspan="1">最后登录时间</th>
                         <th colspan="1" rowspan="1"></th>
                     </tr>
@@ -25,16 +24,14 @@
                     <tbody style="font-size: 16px;font-weight: bold;">
                     <tr ng-repeat="user in userArray">
                         <td>{{user.id}}</td>
-                        <td>{{user.wechat_name}}</td>
-                        <td>{{user.wechat_avatar}}</td>
+                        <td>{{user.first_name}}.{{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phone}}</td>
                         <td>{{user.gender ==0?'女':'男'}}</td>
-                        <td>{{user.user_type ==1?'客户':'供应商'}}</td>
-                        <td>{{user.employee_id}}</td>
-                        <td>{{user.remark}}</td>
+                        <td>{{user.type ==1?'供应商':'普通用户'}}</td>
                         <td>{{user.last_login_on | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
                         <td>
                             <a class="btn btn-xs btn-info" title="编辑" href="/admin.html#/user/{{user.id}}"><i class="fa fa-eye"></i></a>
-
                         </td>
                     </tr>
                     </tbody>

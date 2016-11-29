@@ -1,0 +1,35 @@
+<div>
+    <h1>系统设置</h1>
+    <div class="rows">
+        <div class="col-md-5">
+            <div class="ui-sortable">
+                <div class="panel panel-inverse" >
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        </div>
+                        <h4 class="panel-title">车辆生产商配置</h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>中文名称</th>
+                                <th>英文名称</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="producer in producerArray">
+                                <td>{{producer.name_cn}}</td>
+                                <td>{{producer.name_en}}</td>
+                                <td><button ><i class="fa fa-pencil"></i></button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

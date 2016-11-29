@@ -10,10 +10,10 @@ app.controller("feedbackController", ['$rootScope','$scope','$mpAjax','$location
                 if(data.success){
                     $scope.feedbackArray = data.result;
                 }else{
-                    WarningBox('»ñÈ¡·´À¡ĞÅÏ¢´íÎó')
+                    WarningBox('è·å–åé¦ˆä¿¡æ¯é”™è¯¯')
                 }
             }).catch(function(error){
-                ErrorBox('·şÎñÆ÷ÄÚ²¿´íÎó');
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
             })
         }
 
@@ -22,12 +22,12 @@ app.controller("feedbackController", ['$rootScope','$scope','$mpAjax','$location
             $mpAjax.put('/admin/'+this.$root.adminId+'/feedback/'+feedbackId+"/status/"+$baseConfig.feedbackStatus.processed).then(function(data){
                 if(data.success){
                     $scope.feedbackArray[i].status = $baseConfig.feedbackStatus.processed;
-                    SuccessBox('´¦Àí·´À¡ĞÅÏ¢³É¹¦');
+                    SuccessBox('å¤„ç†åé¦ˆä¿¡æ¯æˆåŠŸ');
                 }else{
-                    WarningBox('¸üĞÂ·´À¡ĞÅÏ¢´íÎó')
+                    WarningBox('æ›´æ–°åé¦ˆä¿¡æ¯é”™è¯¯')
                 }
             }).catch(function(error){
-                ErrorBox('·şÎñÆ÷ÄÚ²¿´íÎó');
+                ErrorBox('æœåŠ¡å™¨å†…éƒ¨é”™è¯¯');
             })
         }
         $scope.getFeedback();

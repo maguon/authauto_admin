@@ -12,7 +12,7 @@ app.controller("brandController", ['$rootScope','$scope','$mpAjax','$location','
                 if(data.success){
                     $scope.brandArray = data.result;
                 }else{
-                    WarningBox('获取课程信息错误')
+                    WarningBox('获取品牌信息错误')
                 }
             }).catch(function(error){
                 ErrorBox('服务器内部错误');
@@ -25,7 +25,7 @@ app.controller("brandController", ['$rootScope','$scope','$mpAjax','$location','
                 if(data.success){
                     $scope.producerArray = data.result;
                 }else{
-                    WarningBox('获取课程信息错误')
+                    WarningBox('获取山产商信息错误')
                 }
             }).catch(function(error){
                 ErrorBox('服务器内部错误');
@@ -66,7 +66,7 @@ app.controller("brandController", ['$rootScope','$scope','$mpAjax','$location','
                     $scope.brandArray.push(subBrand);
                     $scope.setShowFlag();
                 }else{
-                    WarningBox('获取课程信息错误')
+                    WarningBox('更新品牌信息错误')
                 }
             }).catch(function(error){
                 ErrorBox('服务器内部错误');

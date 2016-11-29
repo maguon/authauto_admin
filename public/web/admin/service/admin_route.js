@@ -35,6 +35,18 @@ app.config(['$routeProvider',function($routeProvider) {
             templateUrl: '/admin/view/feedback.html',
             controller:'feedbackController'
         })
+        .when('/password', {
+            templateUrl: '/admin/view/password.html',
+            controller:'passwordController'
+        })
+        .when('/system', {
+            templateUrl: '/admin/view/system.html',
+            controller:'systemController'
+        })
+        .when('/user', {
+            templateUrl: '/admin/view/user.html',
+            controller:'userController'
+        })
         .otherwise({
             templateUrl: '/admin/view/index.html',
             controller:'indexController'
