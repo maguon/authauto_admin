@@ -101,11 +101,38 @@ function getUserCount(params,callback) {
         return callback(error,rows);
     });
 }
+
+function getUserBase(params,callback){
+    var query = " select username,phone,email,gender,first_name,last_name,type,last_login_on,created_on from user_info where id is not null ";
+    var paramsArray=[],i=0;
+    if(params.userId){
+        paramsArray[i++] = params.userId;
+        query = query + " and id = ? ";
+    }
+    if(params.status){
+        paramsArray[i++] = params.status;
+        query = query + " and status = ? ";
+    }
+    if(params.type){
+        paramsArray[i++] = params.type;
+        query = query + " and type = ? ";
+    }
+    if (params.start && params.size) {
+        paramsArray[i++] = parseInt(params.start);
+        paramsArray[i++] = parseInt(params.size);
+        query += " limit ? , ? "
+    }
+    db.dbQuery(query,paramsArray,function(error,rows){
+        logger.debug(' getUserBase ');
+        return callback(error,rows);
+    });
+}
 module.exports ={
     addUser : addUser ,
     updateUser : updateUser ,
     updateUserStatus : updateUserStatus ,
     updateUserPassword : updateUserPassword ,
     getUser : getUser ,
-    getUserCount : getUserCount
+    getUserCount : getUserCount,
+    getUserBase : getUserBase
 }

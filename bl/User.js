@@ -16,7 +16,7 @@ var logger = serverLogger.createLogger('User.js');
 
 function queryUser(req,res,next){
     var params = req.params ;
-    userDAO.getUser(params,function(error,result){
+    userDAO.getUserBase(params,function(error,result){
         if (error) {
             logger.error(' queryUser ' + error.message);
             throw sysError.InternalError(error.message,sysMsg.SYS_INTERNAL_ERROR_MSG);

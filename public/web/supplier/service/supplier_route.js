@@ -21,6 +21,9 @@ app.config(['$routeProvider',function($routeProvider) {
     }).when('/user', {
         templateUrl: '/supplier/view/user.html',
         controller:'userController'
+    }).when('/offer', {
+        templateUrl: '/supplier/view/offer.html',
+        controller:'offerController'
     }).otherwise({
         templateUrl: '/supplier/view/index.html',
         controller:'indexController'

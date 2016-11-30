@@ -1,7 +1,169 @@
 <div>
     <div style="z-index: 1;padding: 120px 0; position: relative;text-align: center;background: url(/supplier/assets/unify/img/bg/1.jpg) no-repeat;background-size: cover;background-position: center center;">
     </div>
-    <div class="rows">
-        <h1>Personal Information</h1>
+    <div class="container content profile">
+        <div class="rows">
+            <div class="col-md-3 md-margin-bottom-40">
+                <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+
+                    <li class="list-group-item active">
+                        <a href="#/user"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#/notify"><i class="fa fa-bell"></i> Notification</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#/offer"><i class="fa fa-list"></i> Offers</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div class="profile-body margin-bottom-20">
+                    <div class="tab-v1">
+                        <ul class="nav nav-justified nav-tabs">
+                            <li class="active"><a data-toggle="tab" ng-click="changeTab(1)"  aria-expanded="true">Edit Profile</a></li>
+                            <li class=""><a data-toggle="tab" ng-click="changeTab(2)" aria-expanded="false">Change Password</a></li>
+                            <li class=""><a data-toggle="tab" ng-click="changeTab(3)" aria-expanded="false">Biz Information</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="profile-edit tab-pane fade active in" ng-if="nowTab==1">
+                                <h2 class="heading-md">Manage your Name, Email Addresses.</h2>
+                                <p>Below are the name and email addresses on file for your account.</p>
+                                <br>
+                                <form name="profileForm">
+                                    <dl class="dl-horizontal">
+                                        <dt><strong>Your email </strong></dt>
+                                        <dd>
+                                            {{user.email}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>First name </strong></dt>
+                                        <dd>
+                                            <section>
+                                                <input type="text" placeholder="First name" ng-model="user.first_name" class="col-md-6" required maxlength="20" >
+                                            </section>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Last name </strong></dt>
+                                        <dd>
+                                            <section>
+                                                <input type="text" placeholder="Last name" ng-model="user.last_name"  class="col-md-6" required maxlength="20" >
+                                            </section>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Gender </strong></dt>
+                                        <dd>
+                                            <section>
+                                                <select class="col-md-6" style="height: 24px;background: #fff;" ng-select="user.gender" ng-model="user.gender">
+                                                    <option value="1">Male</option>
+                                                    <option value="0">Female</option>
+                                                </select>
+                                            </section>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Last login on</strong></dt>
+                                        <dd>
+                                            {{user.last_login_on |date:"MM/dd/yyyy HH:mm:ss"}}
+
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Registered on</strong></dt>
+                                        <dd>
+                                            {{user.created_on|date:"MM/dd/yyyy HH:mm:ss"}}
+
+                                        </dd>
+                                        <hr>
+                                    </dl>
+                                    <button type="button" class="btn btn-success" ng-disabled="profileForm.$invalid">Save</button>
+                                </form>
+
+                            </div>
+
+                            <div class="profile-edit tab-pane fade active in" ng-if="nowTab==2">
+                                <h2 class="heading-md">Manage your Security Settings</h2>
+                                <p>Change your password.</p>
+                                <br>
+                                <form name="passwordForm" novalidate="novalidate">
+                                    <dl class="dl-horizontal">
+                                        <dt><strong>Password</strong></dt>
+                                        <dd>
+                                            <section>
+                                                <input type="password" placeholder="Your password" ng-model="originPassword" class="col-md-6" required minlength="6" maxlength="20" >
+                                            </section>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>New Password</strong></dt>
+                                        <dd>
+                                            <section>
+                                                <input type="password" placeholder="New password" ng-model="newPassword" class="col-md-6" required minlength="6" maxlength="20" >
+                                            </section>
+                                        </dd>
+                                        <hr>
+
+                                    <button class="btn btn-success" type="button" ng-disabled="passwordForm.$invalid">Save</button>
+                                </form>
+                            </div>
+
+                            <div class="profile-edit tab-pane fade active in" ng-if="nowTab==3">
+                                <h2 class="heading-md">Manage your business information.</h2>
+                                <p>Below are the name,city,address and website on file for your business.</p>
+                                <br>
+                                <form name="bizForm">
+                                    <dl class="dl-horizontal">
+                                        <dt><strong>Company </strong></dt>
+                                        <dd>
+                                            {{supplier.biz_name}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong><i class="fa fa-address-book" aria-hidden="true"></i>Manager </strong></dt>
+                                        <dd>
+                                            {{supplier.contact}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Email </strong></dt>
+                                        <dd>
+                                            {{supplier.email}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Phone </strong></dt>
+                                        <dd>
+                                            {{supplier.phone}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Fax </strong></dt>
+                                        <dd>
+                                            {{supplier.fax}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>State/City </strong></dt>
+                                        <dd>
+                                            {{supplier.state}}/{{supplier.city}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Address </strong></dt>
+                                        <dd>
+                                            {{supplier.address}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Zipcode </strong></dt>
+                                        <dd>
+                                            {{supplier.zipcode}}
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Website </strong></dt>
+                                        <dd>
+                                            {{supplier.website}}
+                                        </dd>
+                                        <hr>
+                                    </dl>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 </div>

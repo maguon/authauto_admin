@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col-md-5">
-                    <form name="loginForm" class="log-reg-block sky-form">
+                    <form name="loginForm" novalidate="novalidate" class="log-reg-block">
                         <fieldset>
                         <h2>Login to your account</h2>
 
@@ -63,7 +63,7 @@
                                 <a href="#">Forget your Password?</a>
                             </div>
                         </div>
-                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" id="loginBtn" type="submit" ng-disabled="loginForm.$invalid" ng-click="login()">Login</button>
+                        <button class="btn-success btn-block " id="loginBtn" type="button" style="border:0px;height: 36px;" ng-disabled="loginForm.$invalid" ng-click="login()">Login</button>
 
                         </fieldset>
                     </form>

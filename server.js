@@ -174,6 +174,7 @@ function createServer() {
         supplier.updateSupplierStatus);
     server.get('/api/admin/:adminId/supplier' , supplier.querySupplier);
     server.get('/api/admin/:adminId/supplierCount' , supplier.querySupplierCount);
+    server.get('/api/user/:userId/supplier' , supplier.querySupplier);
 
     /**
      * User Modulexc
@@ -182,6 +183,7 @@ function createServer() {
     server.get('/api/admin/:adminId/userCount' , user.queryUserCount);
     server.post('/api/userLogin' , user.userLogin);
     server.post('/api/user' , user.userRegister);
+    server.get('/api/user/:userId' , user.queryUser);
         //admin
 
     server.on('NotFound', function (req, res, next) {

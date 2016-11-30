@@ -2,21 +2,43 @@ app.controller("userController", ['$rootScope','$scope','$mpAjax','$location','$
 
     function($rootScope,$scope,$mpAjax,$location,$q ,$baseConfig ,$baseFunction) {
         $scope.typeArray = $baseConfig.autoTypeArray;
-        $scope.procureArray = [];
-        $scope.getProcure = function(){
-            $mpAjax.get('/procure').then(function(data){
+        $scope.user = {};
+        $scope.nowTab = 1;
+        $scope.changeTab = function(index){
+            $scope.nowTab=index;
+        }
+        $scope.getUser = function(){
+            $mpAjax.get('/user/'+$rootScope.userId).then(function(data){
                 if(data.success){
-                    $scope.procureArray = data.result;
+                    if(data.result && data.result.length==1){
+                        $scope.user = data.result[0];
+                        $scope.user.gender= $scope.user.gender+"";
+                    }else{
+                        WarningBox('Query user info error .')
+                    }
                 }else{
-                    WarningBox('Query procure info error .')
+                    WarningBox('Query user info error .')
                 }
             }).catch(function(error){
                 ErrorBox('Service internal error .');
             })
         };
-        $scope.getProcure();
-        $scope.addCart = function(id){
-            var procureCount = $baseFunction.addCookieCart(id);
-            $rootScope.procureCount = procureCount;
+
+        $scope.getBiz = function(){
+            $mpAjax.get('/user/'+$rootScope.userId+'/supplier').then(function(data){
+                if(data.success){
+                    if(data.result && data.result.length==1){
+                        $scope.supplier = data.result[0];
+                    }else{
+                        WarningBox('Query user info error .')
+                    }
+                }else{
+                    WarningBox('Query user info error .')
+                }
+            }).catch(function(error){
+                ErrorBox('Service internal error .');
+            })
         }
+        $scope.getUser();
+        $scope.getBiz();
     }])

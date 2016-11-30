@@ -9,20 +9,27 @@
                     <li class="list-group-item ">
                         <a href="#/user"><i class="fa fa-user"></i> Profile</a>
                     </li>
-                    <li class="list-group-item active">
+                    <li class="list-group-item ">
                         <a href="#/notify"><i class="fa fa-bell"></i> Notification</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item active">
                         <a href="#/offer"><i class="fa fa-list"></i> Offers</a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-9">
                 <div class="profile-body margin-bottom-20">
-                    <div class="tab-v1">
+                    <div class="tab-v1" >
+                        <ul class="nav nav-justified nav-tabs">
+                            <li class="active"><a data-toggle="tab" ng-click="changeTab(1)"  aria-expanded="true">Current</a></li>
+                            <li class=""><a data-toggle="tab" ng-click="changeTab(2)" aria-expanded="false">History</a></li>
+                        </ul>
                         <div class="tab-content">
-                            <div class="profile-edit tab-pane fade active in" style="min-height: 200px;">
-                                <h2 class="heading-md" ng-if="notifyArray.length==0" style="color: #dedede;text-align: center">You do not have any notification. </h2>
+                            <div class="profile-edit tab-pane fade active in" ng-if="nowTab==1" style="min-height: 200px;">
+                                <h2 class="heading-md" ng-if="currentOfferArray.length==0" style="color: #dedede;text-align: center;">You do not have any offer. </h2>
+                            </div>
+                            <div class="profile-edit tab-pane fade active in" ng-if="nowTab==2" style="min-height: 200px;">
+                                <h2 class="heading-md" ng-if="historyOfferArray.length==0" style="color: #dedede;text-align: center;">You do not have any offer. </h2>
                             </div>
                         </div>
                     </div>
