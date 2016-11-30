@@ -50,7 +50,7 @@
 
                         <li class="menu-icons shopping-cart" ng-click="toCheckout()" >
                             <i class="menu-icons-style radius-x fa fa-list-alt"></i>
-                            <span class="badge">{{procureCount}}</span>
+                            <span class="badge" ng-if="procureCount>0">{{procureCount}}</span>
                         </li>
 
                         <li class="dropdown">

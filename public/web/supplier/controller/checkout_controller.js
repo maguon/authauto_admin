@@ -5,8 +5,9 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
         $scope.typeArray = $baseConfig.autoTypeArray;
         $scope.procureArray = [];
         $scope.step = 1;
-        $scope.getProcure = function(){
-            $mpAjax.get('/procure').then(function(data){
+        $scope.getProcure = function(idArray){
+            var ids = idArray.join(',');
+            $mpAjax.get('/procure?procureIds='+ids).then(function(data){
                 if(data.success){
                     $scope.procureArray = data.result;
                 }else{
@@ -16,8 +17,10 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
                 ErrorBox('Service internal error');
             })
         };
-        $scope.removeTempProcure = function(id){
-
+        $scope.removeTempProcure = function(id,index){
+            $baseFunction.removeCookieCart(id);
+            $scope.procureArray.splice(index,1);
+            $rootScope.procureCount = $scope.procureArray.length;
         }
         $scope.doNext = function(){
             if($scope.step<3){
@@ -29,5 +32,8 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
                 $scope.step = $scope.step - 1;
             }
         }
-        $scope.getProcure();
+        if($scope.producerIdArray && $scope.producerIdArray.length>0){
+            $scope.getProcure($scope.producerIdArray);
+        }
+
     }])

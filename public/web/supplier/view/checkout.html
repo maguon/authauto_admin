@@ -58,7 +58,7 @@
                                     <tbody>
                                     <tr ng-repeat="procure in procureArray">
                                         <td class="product-in-table">
-                                            <img class="img-responsive" src="/api/image/{{procure.img}}" alt="">
+                                            <img class="img-responsive" ng-src="/api/image/{{procure.img}}" alt="">
                                             <div class="product-it-in">
                                                 <h3>{{procure.brand_en}}-{{procure.name_en}}</h3>
                                                 <span>{{procure.extra_type==typeArray[0].id?typeArray[0].name:typeArray[1].name}}</span>
@@ -73,7 +73,7 @@
                                         </td>
                                         <td class="shop-red">${{procure.price*procure.qty || 0}}</td>
                                         <td>
-                                            <button type="button" ng-click="removeTempProcure" class="close"><span>×</span><span class="sr-only">Close</span></button>
+                                            <button type="button" ng-click="removeTempProcure(procure.id,$index)" class="close"><span>×</span><span class="sr-only">Close</span></button>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -83,8 +83,8 @@
                     </div>
                     <div class="actions clearfix">
                         <ul aria-label="Pagination">
-                            <li class="disabled" aria-disabled="true"><a ng-click="doPre()" >Previous</a></li>
-                            <li  style="display: block;"><a ng-click="doNext()">Next</a>
+                            <li class="disabled" aria-disabled="true"><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doPre()" ng-disabled="true">Previous</button></li>
+                            <li  style="display: block;"><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-disabled="procureArray.length<=0" ng-click="doNext()">Next</button>
                             </li>
                         </ul>
                     </div>
@@ -126,8 +126,8 @@
                     </div>
                     <div class="actions clearfix">
                         <ul>
-                            <li ><a ng-click="doPre()" >Previous</a></li>
-                            <li  style="display: block;"><a ng-click="doNext()">Next</a>
+                            <li ><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doPre()" >Previous</button></li>
+                            <li  style="display: block;"><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doNext()">Next</button>
                             </li>
                         </ul>
                     </div>
@@ -171,8 +171,8 @@
                     </div>
                     <div class="actions clearfix">
                         <ul>
-                            <li ><a ng-click="doPre()" >Previous</a></li>
-                            <li  style="display: block;"><a ng-click="doNext()">Finish</a>
+                            <li ><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doPre()" >Previous</></li>
+                            <li  style="display: block;"><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doNext()">Finish</button>
                             </li>
                         </ul>
                     </div>

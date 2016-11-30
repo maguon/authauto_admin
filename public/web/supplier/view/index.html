@@ -13,13 +13,13 @@
             <div class="col-md-4 col-sm-6 md-margin-bottom-30" style="padding-bottom: 20px;" ng-repeat="procure in procureArray">
                 <div class="product-img">
                     <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="/api/image/{{procure.img}}" alt=""></a>
-                    <a class="product-review" href="shop-ui-inner.html">快速报价</a>
+                    <a class="product-review" ng-click="toCheckout(procure.id)">快速报价</a>
                     <a class="add-to-cart" ng-click="addCart(procure.id)"><i class="fa fa-shopping-cart"></i>加入到报价单</a>
                 </div>
                 <div class="product-description product-description-brd">
                     <div class="overflow-h margin-bottom-5">
                         <div class="pull-left">
-                            <h4 class="title-price"><a href="shop-ui-inner.html">{{procure.brand_en}}-{{procure.name_en}}</a></h4>
+                            <h4 class="title-price"><a >{{procure.brand_en}}-{{procure.name_en}}</a></h4>
                             <span class="gender text-uppercase">{{procure.extra_vol|number:1}}L</span>
                             <span class="gender">{{procure.extra_type==typeArray[0].id?typeArray[0].name:typeArray[1].name}}</span>
                             <span class="gender">{{procure.extra_year}}-{{procure.extra_item}}</span>

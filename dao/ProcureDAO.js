@@ -73,6 +73,13 @@ function getProcure(params,callback){
         paramsArray[i++] = params.procureId;
         query = query + " and id = ? ";
     }
+    if(params.procureIds && params.procureIds.length>0){
+        var idArray = params.procureIds.split(',');
+        if(idArray&&idArray.length>0){
+            var ids = idArray.join(',');
+            query = query + " and id in( " + ids +" ) ";
+        }
+    }
     if(params.status){
         paramsArray[i++] = params.status;
         query = query + " and status = ? ";

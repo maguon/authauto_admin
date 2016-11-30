@@ -12,8 +12,13 @@ app.factory('$baseFunction',['$http','$location','$q','$mpAjax',function($http,$
     _this.cart ='cart';
     _this.getCookieCart = function (){
         var cartArrayStr = $mpAjax.getCookie(_this.cart)|| '';
-        var cartArray = cartArrayStr.split(',')
-        return cartArray;
+        if(cartArrayStr && cartArrayStr.length>0){
+            var cartArray = cartArrayStr.split(',')
+            return cartArray;
+        }else{
+            return [];
+        }
+
     };
     _this.addCookieCart = function(id){
 
@@ -28,7 +33,7 @@ app.factory('$baseFunction',['$http','$location','$q','$mpAjax',function($http,$
     _this.clearCookieCart = function(){
         $mpAjax.setCookie(_this.cart,'');
     }
-    _this.removeCookieCart = function(){
+    _this.removeCookieCart = function(id){
         var cartArray = _this.getCookieCart();
         var i = cartArray.indexOf(id+"") ;
         if(i >= 0){

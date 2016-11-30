@@ -19,4 +19,12 @@ app.controller("indexController", ['$rootScope','$scope','$mpAjax','$location','
             var procureCount = $baseFunction.addCookieCart(id);
             $rootScope.procureCount = procureCount;
         }
+        $scope.toCheckout = function(id){
+            if(id){
+                var procureCount = $baseFunction.addCookieCart(id);
+                $rootScope.procureCount = procureCount;
+            }
+            $location.path('/checkout')
+        }
+
     }])
