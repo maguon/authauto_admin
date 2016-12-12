@@ -37,7 +37,7 @@ var mongoConfig = {
     connect : 'mongodb://127.0.0.1:27017/auto'
 }
 
-var mainPage = "home.html";
+var mainPage = "supplier.html";
 
 var zookeeperUrl = '127.0.0.1:2181';
 
