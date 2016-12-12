@@ -63,5 +63,13 @@ function usage(msg) {
         }));
         logger.info('AUTH-AUTO server has been  started ,listening at %s', server.url);
     });
+    server.listen((opt.port?opt.port:8082), function onListening() {
+        server.get('/',restify.serveStatic({
+            directory: './public/web',
+            default: 'admin_login.html',
+            maxAge: 0
+        }));
+        logger.info('AUTH-AUTO admin server has been  started ,listening at %s', server.url);
+    });
 
 })();
