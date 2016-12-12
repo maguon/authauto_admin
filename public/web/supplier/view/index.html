@@ -2,19 +2,19 @@
     <div class="interactive-slider-v2">
         <div class="container">
             <h1>Welcome to AUTHAUTO</h1>
-            <p>开放透明的高端汽车交易平台</p>
+            <p>Efficient high-end auto transaction platform</p>
         </div>
     </div>
     <div class="container content-md">
         <div class="heading heading-v1 margin-bottom-40" >
-            <h2>最新采购计划</h2>
+            <h2>Last procurement plan</h2>
         </div>
         <div class="row illustration-v2">
             <div class="col-md-4 col-sm-6 md-margin-bottom-30" style="padding-bottom: 20px;" ng-repeat="procure in procureArray">
                 <div class="product-img">
-                    <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="/api/image/{{procure.img}}" alt=""></a>
-                    <a class="product-review" ng-click="toCheckout(procure.id)">快速报价</a>
-                    <a class="add-to-cart" ng-click="addCart(procure.id)"><i class="fa fa-shopping-cart"></i>加入到报价单</a>
+                    <a ><img class="full-width img-responsive" ng-src="/api/image/{{procure.img}}" alt=""></a>
+                    <a class="product-review" ng-click="toCheckout(procure.id)">Quickly Offer</a>
+                    <a class="add-to-cart" ng-click="addCart(procure.id)"><i class="fa fa-paper-plane"></i>Add to my offers </a>
                 </div>
                 <div class="product-description product-description-brd">
                     <div class="overflow-h margin-bottom-5">

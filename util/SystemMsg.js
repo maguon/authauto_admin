@@ -22,6 +22,7 @@ var SYS_MESSAGE_QUEUE_ERROR_MSG = "Message queue is down !";
  * @type {string}
  */
 var CUST_SIGNUP_REGISTERED = "已被注册";//Cutomer do signup ,but the current phone has been exist in system.
+var CUST_SIGNUP_REGISTERED_EN = "The user has been exist in system .";//Cutomer do signup ,but the current phone has been exist in system.
 var CUST_LOGIN_USER_UNREGISTERED = "尚未注册"; //Customer use a email that not exist in system to login
 var CUST_SMS_CAPTCHA_ERROR = "短信验证码错误";
 var CUST_LOGIN_PSWD_ERROR = "登录密码错误" ; // Customer enter a wrong password on login
@@ -70,6 +71,7 @@ module.exports = {
     SYS_PARAMETERS_ERROR_MSG : SYS_PARAMETERS_ERROR_MSG,
 
     CUST_SIGNUP_REGISTERED :CUST_SIGNUP_REGISTERED,
+    CUST_SIGNUP_REGISTERED_EN : CUST_SIGNUP_REGISTERED_EN,
     CUST_LOGIN_USER_UNREGISTERED : CUST_LOGIN_USER_UNREGISTERED,
     CUST_SMS_CAPTCHA_ERROR : CUST_SMS_CAPTCHA_ERROR ,
     CUST_ORIGIN_PSWD_ERROR : CUST_ORIGIN_PSWD_ERROR,

@@ -30,7 +30,7 @@ app.controller("userController", ['$rootScope','$scope','$mpAjax','$location','$
                     if(data.result && data.result.length==1){
                         $scope.supplier = data.result[0];
                     }else{
-                        WarningBox('Query user info error .')
+                        //WarningBox('Query user info error .')
                     }
                 }else{
                     WarningBox('Query user info error .')

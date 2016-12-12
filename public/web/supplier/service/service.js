@@ -5,6 +5,8 @@ app.factory('$mpAjax',['$http','$location','$q',function($http,$location,$q){
     _this.COMMON_AUTH_NAME ='auth-token';
     _this.USER_ID = "user-id";
     _this.USER_STATUS = "status";
+    _this.USER_TYPE = "type";
+    _this.SUPPLIER_ID = "supplier";
 
     _this.setHeader = function(name,value) {
         $http.defaults.headers.common[name] = value;

@@ -22,9 +22,49 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
             $scope.procureArray.splice(index,1);
             $rootScope.procureCount = $scope.procureArray.length;
         }
+        $scope.checkProcure = function(){
+            if($scope.procureArray&& $scope.procureArray.length>0){
+                for(var i =0; i<$scope.procureArray.length;i++){
+                    if(!($scope.procureArray[i].price>0 && $scope.procureArray[i].qty>0)){
+                        return false;
+                    }
+                }
+                return true;
+            }else{
+                return false;
+            }
+        }
+        $scope.addOffer = function(){
+            var params = {
+               procureArray : $scope.procureArray,
+                supplierId :  $rootScope.supplierId
+            };
+            $mpAjax.post('/user/'+$rootScope.userId+"/offer",params).then(function(data){
+                $('#addOfferBtn')[0].disabled = false;
+                if(data.success){
+                    $scope.step = $scope.step + 1;
+                }else{
+                    WarningBox(data.msg);
+                    //$scope.password="";
+                }
+            }).catch(function(error){
+                $('#addOfferBtn')[0].disabled = false;
+                ErrorBox('Service internal error .');
+            })
+        }
         $scope.doNext = function(){
-            if($scope.step<3){
-                $scope.step = $scope.step + 1;
+            if($scope.step ==1 ){
+                if($scope.checkProcure()){
+                    $scope.step = $scope.step + 1;
+                }else{
+                    WarningBox('Please enter price and quantity .')
+                }
+            }else if($scope.step ==2 ){
+                $scope.addOffer();
+            }else if($scope.step ==3){
+                $location.path('/offer')
+            }else{
+                return;
             }
         }
         $scope.doPre =function(){

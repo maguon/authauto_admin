@@ -4,6 +4,7 @@ app.factory('$baseConfig',['$http','$location','$q',function($http,$location,$q)
     _this.defaultUploadImage = '/admin/assets/images/upload-icon.png';
     _this.imageType={brandImage:1,autoImage:2}
     _this.userType={supplier:1};
+    _this.procureStatus={active:1,over:2};
     return _this;
 }]);
 

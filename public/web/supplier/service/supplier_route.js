@@ -24,8 +24,11 @@ app.config(['$routeProvider',function($routeProvider) {
     }).when('/offer', {
         templateUrl: '/supplier/view/offer.html',
         controller:'offerController'
+    }).when('/invite/:inviteId', {
+        templateUrl: '/supplier/view/invite.html',
+        controller:'inviteController'
     }).otherwise({
-        templateUrl: '/supplier/view/index.html',
-        controller:'indexController'
+    templateUrl: '/supplier/view/index.html',
+    controller:'indexController'
     });
 }]);

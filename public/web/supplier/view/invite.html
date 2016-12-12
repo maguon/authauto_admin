@@ -1,0 +1,117 @@
+<div>
+    <div style="z-index: 1;padding: 120px 0; position: relative;text-align: center;background: url(/supplier/assets/unify/img/bg/1.jpg) no-repeat;background-size: cover;background-position: center center;">
+    </div>
+    <div class="log-reg-v3 content-md margin-bottom-30" style="padding-top: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 md-margin-bottom-50" >
+                    <h2 class="welcome-title">Dear <span> {{supplier.contact}}</span> ,Welcome to AuthAuto</h2>
+
+                    <div class="info-block-v2">
+                        <i class="fa fa-building"></i>
+                        <div class="info-block-in">
+                            <h3 style="padding-top: 7px;">{{supplier.biz_name}}</h3>
+                        </div>
+                    </div>
+                    <div class="info-block-v2">
+                        <i class="fa fa-phone"></i>
+                        <div class="info-block-in">
+                            <h3 style="padding-top: 7px;">{{supplier.phone}}</h3>
+                        </div>
+                    </div>
+                    <div class="info-block-v2">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="info-block-in">
+                            <h3 style="padding-top: 7px;">{{supplier.city}},{{supplier.state}}  {{supplier.zipcode}}</h3>
+                        </div>
+                    </div>
+                    <p>It is a professional, efficient and credible service provider who is located on Los Angles, biggest harbor of America and world financial center.</p><br>
+
+                    <div class="row margin-bottom-50">
+                        <div class="col-sm-4 md-margin-bottom-20">
+                            <div class="site-statistics">
+                                <span>19</span>
+                                <small>Brands</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 md-margin-bottom-20">
+                            <div class="site-statistics">
+                                <span>100+</span>
+                                <small>Autos/Month</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="site-statistics">
+                                <span>$ 6M+</span>
+                                <small>Sales/Month</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <form name="regForm" class="log-reg-block sky-form" >
+                        <h2>Create New Account</h2>
+
+                        <div class="login-input reg-input">
+                            <section>
+                                <label class="input">
+                                    <input type="email" ng-model="email" placeholder="Email address" class="form-control"  required>
+                                </label>
+                            </section>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" ng-model="firstName"  placeholder="First name" class="form-control" required>
+                                        </label>
+                                    </section>
+                                </div>
+                                <div class="col-sm-6">
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" ng-model="lastName" placeholder="Last name" class="form-control" required>
+                                        </label>
+                                    </section>
+                                </div>
+                            </div>
+                            <label class="select margin-bottom-15">
+                                <select name="gender" class="form-control" ng-select="gender" placeholder="Gender" required>
+                                    <option disabled selected>Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </label>
+
+                            <section>
+                                <label class="input">
+                                    <input type="password" ng-model="password" placeholder="Password , at least 6 characters"  class="form-control" required maxlength="20" minlength="6">
+                                </label>
+                            </section>
+                            <section>
+                                <label class="input">
+                                    <input type="password" ng-model="confirmPassword" placeholder="Confirm password" class="form-control" required>
+                                </label>
+                            </section>
+                        </div>
+
+                        <label class="checkbox margin-bottom-10">
+                            <input type="checkbox" name="checkbox">
+                            <i></i>
+                            Subscribe to our newsletter to get the latest offers
+                        </label>
+                        <label class="checkbox margin-bottom-20">
+                            <input type="checkbox" name="checkbox" ng-model="agreeFlag">
+                            <i></i>
+                            I have read agreed with the <a href="#">terms &amp; conditions</a>
+                        </label>
+                        <button class="btn-success btn-block" style="border:0px;height: 36px;" id="regBtn" ng-disabled="regForm.$invalid" ng-click="addUserByInvite()">Create Account</button>
+                    </form>
+
+                    <div class="margin-bottom-20"></div>
+                    <p class="text-center">Already you have an account? <a href="#/login">Sign In</a></p>
+                </div>
+            </div><!--/end row-->
+        </div><!--/end container-->
+    </div>
+</div>

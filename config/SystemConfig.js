@@ -39,12 +39,19 @@ var mongoConfig = {
 
 var mainPage = "home.html";
 
+var zookeeperUrl = '127.0.0.1:2181';
 
+var topicObj ={
+    inviteTopic : 'invite',
+    procureTopic : 'procure'
+}
 
 module.exports = {
     getMysqlConnectOptions : getMysqlConnectOptions,
     loggerConfig : loggerConfig,
     logLevel : logLevel ,
     mongoConfig : mongoConfig ,
-    mainPage : mainPage
+    mainPage : mainPage ,
+    zookeeperUrl :  zookeeperUrl ,
+    topicObj : topicObj
 }

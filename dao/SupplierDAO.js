@@ -97,6 +97,11 @@ function getSupplier(params,callback){
         paramsArray[i++] = params.status;
         query = query + " and status = ? ";
     }
+    if (params.start && params.size) {
+        paramsArray[i++] = parseInt(params.start);
+        paramsArray[i++] = parseInt(params.size);
+        query += " limit ? , ? "
+    }
     db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' getSupplier ');
         return callback(error,rows);
@@ -118,10 +123,29 @@ function getSupplierCount(params,callback){
     });
 }
 
+function updateSupplierRel(params,callback){
+    var query = " update supplier set user_id=? where id is not null " ;
+    var paramsArray=[],i=0;
+    paramsArray[i++]=params.userId;
+    if(params.supplierId){
+        paramsArray[i++] = params.supplierId;
+        query = query + " and id = ? ";
+    }
+    if(params.email){
+        paramsArray[i++] = params.email;
+        query = query + " and email = ? ";
+    }
+    paramsArray[i]=params.supplierId;
+    db.dbQuery(query,paramsArray,function(error,rows){
+        logger.debug(' updateSupplierRel ');
+        return callback(error,rows);
+    });
+}
 module.exports ={
     addSupplier : addSupplier ,
     updateSupplier : updateSupplier ,
     updateSupplierStatus : updateSupplierStatus,
     getSupplier : getSupplier ,
-    getSupplierCount : getSupplierCount
+    getSupplierCount : getSupplierCount ,
+    updateSupplierRel : updateSupplierRel
 }

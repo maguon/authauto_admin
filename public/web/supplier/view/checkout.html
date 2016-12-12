@@ -69,6 +69,7 @@
                                         <td><input type="number" ng-model="procure.price" class="required"></td>
                                         <td>
 
+
                                             <input type="number" ng-model="procure.qty" max="{{procure.qty}}">
                                         </td>
                                         <td class="shop-red">${{procure.price*procure.qty || 0}}</td>
@@ -122,12 +123,44 @@
                         </ul>
                     </div>
                     <div class="content clearfix">
-                        <section></section>
+                        <section>
+                            <div class="rows" ng-if="procureArray.length ==0">
+                                <div style="text-align: center">
+                                    <h2 class="title-type">Your offer list is empty.</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 md-margin-bottom-40">
+                                    <h2 class="title-type">Extra service</h2>
+                                    <div class="billing-info-inputs checkbox-list state-success">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>免费存放</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>送车上门</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>低税率</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>报关报检</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>靠近港口</label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                     <div class="actions clearfix">
                         <ul>
                             <li ><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doPre()" >Previous</button></li>
-                            <li  style="display: block;"><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doNext()">Next</button>
+                            <li  style="display: block;"><button class="btn btn-success btn-u-lg" id="addOfferBtn" style="min-width: 126px;" ng-click="doNext()">Next</button>
                             </li>
                         </ul>
                     </div>
@@ -165,14 +198,21 @@
                         </ul>
                     </div>
                     <div class="content clearfix">
-                        <section>
-                            We have received your request for a 2017 Audi SQ5. Your confirmation# is 67651072. You'll be hearing from the following dealership, usually within 24 hrs.
-                        </section>
+                        <div class="rows" ng-if="procureArray.length ==0">
+                            <div style="text-align: center">
+                                <h2 class="title-type">Your offer list is empty.</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 md-margin-bottom-40">
+                                <h2 class="title-type" style="text-align: center;">您已经完成了车辆的报价，如果您的报价被才接受，我们会在采购计划结束后的24小时之内与您联系。</h2>
+                            </div>
+                        </div>
                     </div>
                     <div class="actions clearfix">
                         <ul>
-                            <li ><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doPre()" >Previous</></li>
                             <li  style="display: block;"><button class="btn btn-success btn-u-lg" style="min-width: 126px;" ng-click="doNext()">Finish</button>
+
                             </li>
                         </ul>
                     </div>

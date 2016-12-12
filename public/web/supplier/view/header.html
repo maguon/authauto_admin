@@ -26,13 +26,13 @@
                         <ul class="nav navbar-nav">
                             <li class="menu-icons shopping-cart"  ng-show="loginFlag" ng-click="toNotify()">
                                 <i class="menu-icons-style radius-x fa fa-bell"></i>
-                                <span class="badge">{{notifyCount}}</span>
+                                <span class="badge" ng-if="notifyCount>0">{{notifyCount}}</span>
                             </li>
                             <li class="menu-icons"  ng-show="loginFlag" ng-click="toUser()">
                                 <i class="menu-icons-style radius-x fa fa-user"></i>
                             </li>
-                            <li class="menu-icons shopping-cart"  ng-show="loginFlag" ng-click="logOut()">
-                                <i class="menu-icons-style radius-x fa fa-power-off"></i>
+                            <li class="menu-icons shopping-cart"  ng-show="loginFlag" style="padding-left: 10px;" ng-click="logOut()">
+                                <i class="menu-icons-style radius-x fa fa-sign-out"></i>
                             </li>
                         </ul>
                         <!--<li class="menu-icons shopping-cart">
@@ -54,10 +54,10 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="#/register" ng-show="loginFlag==false" style="font-family: Serif;">Sign up</a>
+                            <a href="#/register" ng-show="loginFlag==false" style="font-family: Open Sans, Arial, sans-serif;">Sign up</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#/login" ng-show="loginFlag==false" style="font-family: Serif;">Login</a>
+                            <a href="#/login" ng-show="loginFlag==false" style="font-family: Open Sans, Arial, sans-serif;">Login</a>
                         </li>
                     </ul>
                 </div>

@@ -67,6 +67,10 @@ function getUser(params,callback) {
         paramsArray[i++] = params.userId;
         query = query + " and id = ? ";
     }
+    if(params.email){
+        paramsArray[i++] = params.email;
+        query = query + " and email = ? ";
+    }
     if(params.status){
         paramsArray[i++] = params.status;
         query = query + " and status = ? ";
@@ -103,7 +107,7 @@ function getUserCount(params,callback) {
 }
 
 function getUserBase(params,callback){
-    var query = " select username,phone,email,gender,first_name,last_name,type,last_login_on,created_on from user_info where id is not null ";
+    var query = " select id,username,phone,email,gender,first_name,last_name,type,last_login_on,created_on from user_info where id is not null ";
     var paramsArray=[],i=0;
     if(params.userId){
         paramsArray[i++] = params.userId;
@@ -112,6 +116,10 @@ function getUserBase(params,callback){
     if(params.status){
         paramsArray[i++] = params.status;
         query = query + " and status = ? ";
+    }
+    if(params.email){
+        paramsArray[i++] = params.email;
+        query = query + " and email = ? ";
     }
     if(params.type){
         paramsArray[i++] = params.type;

@@ -27,6 +27,31 @@
                         <div class="tab-content">
                             <div class="profile-edit tab-pane fade active in" ng-if="nowTab==1" style="min-height: 200px;">
                                 <h2 class="heading-md" ng-if="currentOfferArray.length==0" style="color: #dedede;text-align: center;">You do not have any offer. </h2>
+                                <div class=" shopping-cart table-responsive ng-scope" ng-if="currentOfferArray.length>0">
+                                    <table class="table table-striped">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="offer in currentOfferArray">
+                                            <td class="product-in-table">
+                                                <img class="img-responsive" style="width: 120px;" ng-src="/api/image/{{offer.img}}" alt="">
+                                                <div class="product-it-in" style="margin-top: 10px;">
+                                                    <h3>{{offer.brand_en}}-{{offer.name_en}}</h3>
+                                                    <span>{{offer.extra_type==typeArray[0].id?typeArray[0].name:typeArray[1].name}}</span>
+                                                    <span>{{offer.extra_vol|number:1}}L</span>
+                                                    <span>{{offer.extra_year}}-{{offer.extra_item}}</span>
+                                                    <h5>{{offer.end|date:"MM/dd/yyyy"}}</h5>
+                                                </div>
+                                            </td>
+                                            <td>Price :${{offer.price}}</td>
+                                            <td >Quantity :{{offer.qty}}</td>
+                                            <td ><i class="fa fa-pencil"></i></td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="profile-edit tab-pane fade active in" ng-if="nowTab==2" style="min-height: 200px;">
                                 <h2 class="heading-md" ng-if="historyOfferArray.length==0" style="color: #dedede;text-align: center;">You do not have any offer. </h2>

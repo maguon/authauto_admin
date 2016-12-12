@@ -18,8 +18,10 @@ var supplier = require('./bl/Supplier.js');
 var auto = require('./bl/Auto.js');
 var image = require('./bl/Image.js');
 var procure = require('./bl/Procure.js');
+var offer = require('./bl/Offer.js');
 var feedback = require('./bl/Feedback.js');
 var user = require('./bl/User.js');
+var messageQueue = require('./bl/MessageQueue.js');
 
 
 ///--- API
@@ -166,6 +168,14 @@ function createServer() {
     server.put('/api/admin/:adminId/procure/:procureId/status/:status' ,procure.updateProcureStatus);
 
     /**
+     * Offer Module
+     */
+    server.get('/api/user/:userId/offer' , offer.queryOfferFullInfo);
+    server.post({path:'/api/user/:userId/offer',contentType: 'application/json'},offer.createProcureOffer);
+    server.put({path:'/api/user/:userId/offer/:offerId',contentType: 'application/json'} ,offer.updateProcureOffer);
+    server.get('/api/admin/:adminId/offer' , offer.queryOfferFullInfo);
+
+    /**
      * Supplier Module
      */
     server.post({path:'/api/admin/:adminId/supplier',contentType: 'application/json'},supplier.createSupplier);
@@ -177,15 +187,20 @@ function createServer() {
     server.get('/api/user/:userId/supplier' , supplier.querySupplier);
 
     /**
-     * User Modulexc
+     * User Module
      */
     server.get('/api/admin/:adminId/user' , user.queryUser);
     server.get('/api/admin/:adminId/userCount' , user.queryUserCount);
-    server.post('/api/userLogin' , user.userLogin);
-    server.post('/api/user' , user.userRegister);
+    server.post({path:'/api/userLogin' ,contentType: 'application/json'}, user.userLogin);
+    server.post({path:'/api/user',contentType: 'application/json'} , user.userRegister);
     server.get('/api/user/:userId' , user.queryUser);
-        //admin
+    server.get('/api/invite/:inviteCode' , user.getInviteInfo);
+    server.post({path:'/api/invite/:inviteCode/supplier' ,contentType: 'application/json'}, user.addUserByInviteCode);
 
+    /**
+     * Message Queue Module
+     */
+    server.get('/api/topics' , messageQueue.sendInviteEmail);
     server.on('NotFound', function (req, res, next) {
         logger.warn(req.url + " not found");
         res.send(404);

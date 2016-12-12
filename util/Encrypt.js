@@ -50,17 +50,22 @@ function createActiveCode(email,uid){
 }
 
 function resolveActiveCode(activeCode){
-    var plaintext = decryptByAES(activeCode);
-    if(plaintext == null){
-        return null;
-    }else{
-        var paramArray = plaintext.split("|");
-        if(paramArray != null && paramArray.length == 3){
-            return paramArray;
-        }else{
+    try{
+        var plaintext = decryptByAES(activeCode);
+        if(plaintext == null){
             return null;
+        }else{
+            var paramArray = plaintext.split("|");
+            if(paramArray != null && paramArray.length >0){
+                return paramArray;
+            }else{
+                return null;
+            }
         }
+    }catch(e){
+        return null;
     }
+
 }
 
 function createLoginEmailCode(originEmail,newEmail,uid){

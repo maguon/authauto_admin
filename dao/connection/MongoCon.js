@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient,
     Server = require('mongodb').Server;
 var serverLogger = require('../../util/ServerLogger.js');
 var sysConfig = require('../../config/SystemConfig.js');
-var logger = serverLogger.createLogger('resourceDB.js');
+var logger = serverLogger.createLogger('MongoCon.js');
 
 
 
