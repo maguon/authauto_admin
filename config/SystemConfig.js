@@ -10,7 +10,7 @@ var mysqlConnectOptions ={
     user: 'auto',
     password: 'auth',
     database:'auto_plan',
-    host: 'localhost' ,
+    host: '127.0.0.1' ,
     charset : 'utf8mb4',
     //,dateStrings : 'DATETIME'
 };
