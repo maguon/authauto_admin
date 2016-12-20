@@ -9,6 +9,112 @@
         </div>
     </div>
     <div class="rows" style="margin-left: -15px;padding-top: 10px;">
+        <div class="modal fade" id="modal-supplier" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #348fe2!important">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" style="color: #fff">供应商信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-xs-12">
+                            <div class="col-md-6">
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-openid fa-stack-1x" title="供应商ID"></i>
+								</span>
+                                    {{supplier.id}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-user fa-stack-1x" title="联系人"></i>
+								</span>
+                                    {{supplier.contact}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-envelope fa-stack-1x" title="邮箱"></i>
+								</span>
+                                    {{supplier.email}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-phone fa-stack-1x" title="电话"></i>
+								</span>
+                                    {{supplier.phone}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-fax fa-stack-1x" title="传真"></i>
+								</span>
+                                    {{supplier.fax}}
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-building fa-stack-1x" title="公司"></i>
+								</span>
+                                    {{supplier.biz_name}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-mail-forward fa-stack-1x" title="zipcode"></i>
+								</span>
+                                    {{supplier.zipcode}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-map-marker fa-stack-1x" title="市／州"></i>
+								</span>
+                                    {{supplier.city}}/{{supplier.state}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-map-signs fa-stack-1x" title="地址"></i>
+								</span>
+                                    {{supplier.address}}
+                                </p>
+                                <p>
+                                <span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-clock-o fa-stack-1x" title="创建时间"></i>
+								</span>
+                                {{supplier.created_on |date : 'yyyy-MM-dd HH:mm:ss'}}
+                                </p>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>
+                                    <span class="fa-stack fa-2x text-primary">
+                                        <i class="fa fa-file fa-stack-1x" title="备注"></i>
+                                    </span>
+                                    {{supplier.remark}}
+                                </p>
+                            </div>
+                        </div>
+                        &nbsp;
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:;" class="btn btn-sm btn-primary" data-dismiss="modal">关闭</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-offer" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #348fe2!important">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" style="color: #fff">采购信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{offer}}
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:;" class="btn btn-sm btn-primary" data-dismiss="modal">关闭</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12">
             <div class="panel panel-inverse" data-sortable-id="form-stuff-3">
                 <div class="panel-heading">
@@ -76,7 +182,10 @@
                             <td>{{offer.s_email}}</td>
                             <td>{{offer.phone}}</td>
                             <td>{{offer.state}}/{{offer.city}}</td>
-                            <td><i class="fa fa-ticket"></i><i class="fa fa-user"></i></td>
+                            <td style="letter-spacing: 5px;">
+                                <a id="offerBtn" data-target="#modal-offer" data-toggle="modal"></a><i class="fa fa-ticket" ng-click="showOffer(offer.id)"></i>
+                                <a id="supplierBtn" data-target="#modal-supplier" data-toggle="modal"></a><i class="fa fa-user" ng-click="showSupplier(offer.supplier_id)"></i>
+                            </td>
                         </tr>
 
                         </tbody>

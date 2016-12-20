@@ -19,6 +19,7 @@ var auto = require('./bl/Auto.js');
 var image = require('./bl/Image.js');
 var procure = require('./bl/Procure.js');
 var offer = require('./bl/Offer.js');
+var open = require('./bl/Open.js');
 var feedback = require('./bl/Feedback.js');
 var user = require('./bl/User.js');
 var messageQueue = require('./bl/MessageQueue.js');
@@ -176,6 +177,10 @@ function createServer() {
     server.get('/api/admin/:adminId/offer' , offer.queryOfferFullInfo);
 
     /**
+     * Offer Module
+     */
+    server.get('/api/tax' , open.getTaxRate);
+    /**
      * Supplier Module
      */
     server.post({path:'/api/admin/:adminId/supplier',contentType: 'application/json'},supplier.createSupplier);
@@ -200,7 +205,7 @@ function createServer() {
     /**
      * Message Queue Module
      */
-    server.get('/api/topics' , messageQueue.sendInviteEmail);
+    server.post({path:'/api/admin/:adminId/supplier/:supplierId/invite',contentType: 'application/json'}, messageQueue.sendInviteEmail);
     server.on('NotFound', function (req, res, next) {
         logger.warn(req.url + " not found");
         res.send(404);

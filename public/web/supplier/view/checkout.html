@@ -134,20 +134,19 @@
                                     <h2 class="title-type">Extra service</h2>
                                     <div class="billing-info-inputs checkbox-list state-success">
                                         <div class="row">
+
                                             <div class="col-md-4">
-                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>免费存放</label>
+                                                <div class=" input-group">
+                                                    <label  style="margin: 0 0 9px 5px;">Tax Rate(%)</label>
+                                                    <input type="number"  ng-model="taxRate" class="form-control" min="0.00" step="0.01">
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>送车上门</label>
+                                                <div class="input-group">
+                                                <label ><label class="checkbox state-success"><input type="checkbox" ng-model="exportService"><i></i>Ocean Export Service</label></label>
+                                                <input ng-if="exportService" type="number" ng-model="exportFee" placeholder="Total Service Fee"   class="form-control" min="0" step="1" | number>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>低税率</label>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>报关报检</label>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="checkbox state-success"><input type="checkbox" name="checkbox"><i></i>靠近港口</label>
+
                                             </div>
 
                                         </div>

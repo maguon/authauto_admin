@@ -27,6 +27,24 @@ app.controller("procureDetailController", ['$rootScope','$scope','$mpAjax','$loc
                 ErrorBox('服务器内部错误');
             })
         }
+        $scope.showSupplier = function(supplierId){
+            $mpAjax.get('/admin/'+this.$root.adminId+'/supplier?supplierId='+supplierId).then(function(data){
+                if(data.success){
+
+                    $scope.supplier = data.result[0];
+
+                }else{
+                    WarningBox('获取供应商信息错误')
+                }
+            }).catch(function(error){
+                ErrorBox('服务器内部错误');
+            })
+            $('#supplierBtn').click();
+        }
+        $scope.showOffer = function(offerId){
+            $scope.offer = offerId;
+            $('#offerBtn').click();
+        }
         $scope.getProcure();
         $scope.getOffer();
     }])

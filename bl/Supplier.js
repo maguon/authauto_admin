@@ -80,6 +80,7 @@ function querySupplierCount(req,res,next){
     })
 }
 
+
 module.exports ={
     querySupplier : querySupplier ,
     createSupplier : createSupplier ,

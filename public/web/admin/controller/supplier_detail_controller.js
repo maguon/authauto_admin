@@ -58,4 +58,19 @@ app.controller("supplierDetailController", ['$rootScope','$scope','$mpAjax','$lo
             })
         };
 
+        $scope.sendInviteEmail = function(){
+            var params = {
+                email : $scope.email
+            }
+            $mpAjax.post('/admin/'+this.$root.adminId+'/supplier/'+$scope.supplierId+'/invite',params).then(function(data){
+                if(data.success) {
+                    SuccessBox('发送邀请邮件成功')
+                }else{
+                    WarningBox('发送邀请邮件失败')
+                }
+            }).catch(function(error){
+                ErrorBox('服务器内部错误');
+            })
+        }
+
     }])

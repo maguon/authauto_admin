@@ -7,6 +7,7 @@ app.factory('$mpAjax',['$http','$location','$q',function($http,$location,$q){
     _this.USER_STATUS = "status";
     _this.USER_TYPE = "type";
     _this.SUPPLIER_ID = "supplier";
+    _this.ZIPCODE = "zipcode";
 
     _this.setHeader = function(name,value) {
         $http.defaults.headers.common[name] = value;

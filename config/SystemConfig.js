@@ -46,6 +46,12 @@ var topicObj ={
     procureTopic : 'procure'
 }
 
+var taxOptions = {
+    host : 'taxrates.api.avalara.com',
+    port : 443,
+    path : '/postal',
+    key : 'MLiUTTs3byUkE/NGaBqMkNXirzTE2P/JK7zFLC1OpAn3nbUBUHEValjhQpd/yIfmknISlu7AbhbojcVhxbNFLA=='
+}
 module.exports = {
     getMysqlConnectOptions : getMysqlConnectOptions,
     loggerConfig : loggerConfig,
@@ -53,5 +59,6 @@ module.exports = {
     mongoConfig : mongoConfig ,
     mainPage : mainPage ,
     zookeeperUrl :  zookeeperUrl ,
-    topicObj : topicObj
+    topicObj : topicObj ,
+    taxOptions : taxOptions
 }

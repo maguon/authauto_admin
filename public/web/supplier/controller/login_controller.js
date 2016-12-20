@@ -27,6 +27,7 @@ app.controller("loginController", ['$rootScope','$scope','$mpAjax','$location','
                             if(data.success && data.result.length>0){
                                 $rootScope.supplierId = data.result[0].id;
                                 $mpAjax.setCookie($mpAjax.SUPPLIER_ID ,data.result[0].id);
+                                $mpAjax.setCookie($mpAjax.ZIPCODE ,data.result[0].zipcode);
                             }else{
                                 WarningBox('Query user supplier info error .')
                             }

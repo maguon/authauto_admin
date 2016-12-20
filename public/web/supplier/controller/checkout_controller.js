@@ -5,6 +5,7 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
         $scope.typeArray = $baseConfig.autoTypeArray;
         $scope.procureArray = [];
         $scope.step = 1;
+        $scope.exportService = false;
         $scope.getProcure = function(idArray){
             var ids = idArray.join(',');
             $mpAjax.get('/procure?procureIds='+ids).then(function(data){
@@ -32,6 +33,18 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
                 return true;
             }else{
                 return false;
+            }
+        }
+        $scope.getTaxRate = function(){
+            $scope.zipcode = $mpAjax.getCookie($mpAjax.ZIPCODE)
+            if($scope.zipcode){
+                $mpAjax.get('/tax?zipcode='+$scope.zipcode).then(function(data){
+                    if(data.success && data.result && data.result.totalRate){
+                        $scope.taxRate = data.result.totalRate;
+                    }
+                }).catch(function(error){
+                    ErrorBox('Service internal error');
+                })
             }
         }
         $scope.addOffer = function(){
@@ -74,6 +87,7 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
         }
         if($scope.producerIdArray && $scope.producerIdArray.length>0){
             $scope.getProcure($scope.producerIdArray);
+            $scope.getTaxRate();
         }
 
     }])

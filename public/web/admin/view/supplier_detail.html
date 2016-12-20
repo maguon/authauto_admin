@@ -82,6 +82,11 @@
                                     <i class="fa fa-save "></i>
                                     更新
                                 </button>
+
+                                <button ng-if="userId==null" class="btn btn-warning" type="button" ng-click="sendInviteEmail()" ng-disabled="supplierDetailForm.$invalid">
+                                    <i class="fa fa-paper-plane "></i>
+                                    发送邀请注册邮件
+                                </button>
                             </div>
                         </div>
                     </form>
