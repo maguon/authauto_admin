@@ -101,11 +101,41 @@ function getProducer(params ,callback){
         return callback(error,rows);
     });
 }
+
+function addProducer(params,callback){
+    var query = " insert into auto_producer (name_cn,name_en,image,remark) values (? , ? , ? , ? )";
+    var paramsArray=[],i=0;
+    paramsArray[i++]=params.nameCn;
+    paramsArray[i++]=params.nameEn;
+    paramsArray[i++]=params.image;
+    paramsArray[i]=params.remark;
+    db.dbQuery(query,paramsArray,function(error,rows){
+        logger.debug(' addProducer ');
+        return callback(error,rows);
+    });
+}
+
+function updateProducer(params,callback){
+    var query = " update auto_producer set name_cn= ? , name_en= ?, image= ? ,remark=? where id = ? ";
+    var paramsArray=[],i=0;
+    paramsArray[i++] = params.nameCn;
+    paramsArray[i++] = params.nameEn;
+    paramsArray[i++] = params.image;
+    paramsArray[i++] = params.remark;
+    paramsArray[i++] = params.producerId;
+    db.dbQuery(query,paramsArray,function(error,rows){
+        logger.debug(' updateProducer ');
+        return callback(error,rows);
+    });
+}
 module.exports ={
     addBrand : addBrand ,
     updateBrand : updateBrand ,
     updateBrandStatus : updateBrandStatus ,
     getBrand : getBrand ,
     getBrandCount : getBrandCount ,
-    getProducer : getProducer
+    getProducer : getProducer,
+    addProducer : addProducer ,
+    updateProducer : updateProducer
+
 }

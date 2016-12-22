@@ -104,12 +104,91 @@
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #348fe2!important">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" style="color: #fff">采购信息</h4>
+                        <h4 class="modal-title" style="color: #fff">报价信息</h4>
                     </div>
                     <div class="modal-body">
-                        {{offer}}
+                        <div class="rows">
+                            <div class="col-md-6">
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-openid fa-stack-1x" title="报价ID"></i>
+								</span>
+                                    {{offer.id}}
+                                </p>
+
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-calculator fa-stack-1x" title="消费税率"></i>
+								</span>
+                                    {{offer.tax | number}}%
+                                </p>
+
+
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-clock-o fa-stack-1x" title="报价时间"></i>
+								</span>
+                                    {{offer.created_on |date : 'yyyy-MM-dd HH:mm:ss'}}
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-dollar fa-stack-1x" title="单价"></i>
+								</span>
+                                    {{offer.price | number}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-cubes fa-stack-1x" title="数量"></i>
+								</span>
+                                    {{offer.qty | number}}
+                                </p>
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+
+								</span>
+                                </p>
+                            </div>
+                        </div>
+                        &nbsp;
                     </div>
                     <div class="modal-footer">
+                        <a href="javascript:;" class="btn btn-sm btn-primary" data-dismiss="modal">关闭</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-offer-confirm" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #348fe2!important">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" style="color: #fff">选择报价</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="rows">
+                            <div class="col-md-6">
+                                <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-dollar fa-stack-1x" title="实际单价"></i>
+								</span>
+                                <input type="number" ng-model="actualPrice">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+								<span class="fa-stack fa-2x text-primary">
+									<i class="fa fa-cubes fa-stack-1x" title="实际数量"></i>
+								</span>
+                                <input type="number" ng-model="actualQty">
+                            </p>
+                        </div>
+                        &nbsp;
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:;" class="btn btn-sm btn-success" data-dismiss="modal" ng-click="selectOffer()">确定</a>
                         <a href="javascript:;" class="btn btn-sm btn-primary" data-dismiss="modal">关闭</a>
                     </div>
                 </div>
@@ -142,10 +221,45 @@
                             </h5>
                             {{procure.remark}}
                         </div>
-                        <div class="media-right" style="vertical-align: middle;">
-                            <button class="btn btn-success m-r-5"><i class="fa fa-paper-plane"></i> 通知供应商</button>
+                        <div class="media-right" style="vertical-align: middle;" ng-if="procure.status==1">
+                            <button class="btn btn-success btn-block m-r-5"><i class="fa fa-paper-plane"></i> 通知供应商</button>
+                            <button class="btn btn-warning btn-block m-r-5" style="margin: 2px 0 ;" ng-click="finishProcure()"><i class="fa fa-check"></i> 完成采购</button>
                         </div>
                     </div>
+                    <div class="rows">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>采购价格</th>
+                                <th>采购数量</th>
+                                <th>税率(%)</th>
+                                <th>公司</th>
+                                <th>联系人</th>
+                                <th>邮箱</th>
+                                <th>电话</th>
+                                <th>州/市</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="offer in offerArray">
+                                <td>{{offer.actual_price |currency:"$"}}</td>
+                                <td>{{offer.actual_qty}}</td>
+                                <td>{{offer.tax}}</td>
+                                <td>{{offer.biz_name}}</td>
+                                <td>{{offer.contact}}</td>
+                                <td>{{offer.s_email}}</td>
+                                <td>{{offer.phone}}</td>
+                                <td>{{offer.state}}/{{offer.city}}</td>
+                                <td style="letter-spacing: 5px;">
+                                    <a id="supplierBtn" data-target="#modal-supplier" data-toggle="modal"></a><i class="fa fa-user" ng-click="showSupplier(offer.supplier_id)"></i>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -160,11 +274,12 @@
                     <h4 class="panel-title">报价信息</h4>
                 </div>
                 <div class="panel-body" style="display: block;">
-                    <table class="table table-striped">
+                    <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>价格</th>
                             <th>数量</th>
+                            <th>税率(%)</th>
                             <th>公司</th>
                             <th>联系人</th>
                             <th>邮箱</th>
@@ -177,6 +292,7 @@
                         <tr ng-repeat="offer in offerArray">
                             <td>{{offer.price |currency:"$"}}</td>
                             <td>{{offer.qty}}</td>
+                            <td>{{offer.tax}}</td>
                             <td>{{offer.biz_name}}</td>
                             <td>{{offer.contact}}</td>
                             <td>{{offer.s_email}}</td>
@@ -185,6 +301,7 @@
                             <td style="letter-spacing: 5px;">
                                 <a id="offerBtn" data-target="#modal-offer" data-toggle="modal"></a><i class="fa fa-ticket" ng-click="showOffer(offer.id)"></i>
                                 <a id="supplierBtn" data-target="#modal-supplier" data-toggle="modal"></a><i class="fa fa-user" ng-click="showSupplier(offer.supplier_id)"></i>
+                                <a id="offerConfirmBtn" data-target="#modal-offer-confirm" data-toggle="modal"></a><i class="fa fa-gavel" ng-click="showOfferConfirm(offer.id ,offer.actual_price,offer.actual_qty)"></i>
                             </td>
                         </tr>
 

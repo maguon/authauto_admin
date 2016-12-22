@@ -31,6 +31,10 @@ app.config(['$routeProvider',function($routeProvider) {
             templateUrl: '/admin/view/procure.html',
             controller:'procureController'
         })
+        .when('/procureHistory', {
+            templateUrl: '/admin/view/procure_history.html',
+            controller:'procureHistoryController'
+        })
         .when('/procure/:procureId', {
             templateUrl: '/admin/view/procure_detail.html',
             controller:'procureDetailController'

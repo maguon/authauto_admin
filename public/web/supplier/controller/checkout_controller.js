@@ -49,8 +49,9 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
         }
         $scope.addOffer = function(){
             var params = {
-               procureArray : $scope.procureArray,
-                supplierId :  $rootScope.supplierId
+                procureArray : $scope.procureArray,
+                supplierId :  $rootScope.supplierId,
+                tax : $scope.taxRate
             };
             $mpAjax.post('/user/'+$rootScope.userId+"/offer",params).then(function(data){
                 $('#addOfferBtn')[0].disabled = false;

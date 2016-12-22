@@ -12,7 +12,7 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
         $scope.extraArray = [];
         $scope.procureArray = [];
         $scope.getProcure = function(){
-            $mpAjax.get('/procure').then(function(data){
+            $mpAjax.get('/procure?status='+$baseConfig.procureStatus.active).then(function(data){
                 if(data.success){
                     $scope.procureArray = data.result;
                 }else{

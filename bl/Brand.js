@@ -83,10 +83,42 @@ function queryProducer(req,res,next){
         }
     })
 }
+
+
+function createProducer(req,res,next){
+    var params = req.params ;
+    brandDAO.addProducer(params,function(error,result){
+        if (error) {
+            logger.error(' createProducer ' + error.message);
+            throw sysError.InternalError(error.message,sysMsg.SYS_INTERNAL_ERROR_MSG);
+        } else {
+            logger.info(' createProducer ' + 'success');
+            resUtil.resetCreateRes(res,result,null);
+            return next();
+        }
+    })
+}
+
+function updateProducer(req,res,next){
+    var params = req.params ;
+    brandDAO.updateProducer(params,function(error,result){
+        if (error) {
+            logger.error(' updateProducer ' + error.message);
+            throw sysError.InternalError(error.message,sysMsg.SYS_INTERNAL_ERROR_MSG);
+        } else {
+            logger.info(' updateProducer ' + 'success');
+            resUtil.resetUpdateRes(res,result,null);
+            return next();
+        }
+    })
+}
 module.exports = {
     createBrand : createBrand ,
     queryBrand : queryBrand ,
     updateBrand :updateBrand ,
     queryBrandCount : queryBrandCount ,
-    queryProducer : queryProducer
+    queryProducer : queryProducer ,
+    createProducer : createProducer ,
+    updateProducer :  updateProducer
+
 }

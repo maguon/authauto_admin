@@ -21,7 +21,7 @@ app.controller("brandController", ['$rootScope','$scope','$mpAjax','$location','
 
 
         $scope.getProducer = function(){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/producer').then(function(data){
+            $mpAjax.get('/producer').then(function(data){
                 if(data.success){
                     $scope.producerArray = data.result;
                 }else{

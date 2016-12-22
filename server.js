@@ -144,7 +144,9 @@ function createServer() {
     server.put({path:'/api/admin/:adminId/brand/:brandId',contentType: 'application/json'} ,brand.updateBrand);
     server.get('/api/admin/:adminId/brand' , brand.queryBrand);
     server.get('/api/admin/:adminId/brandCount' , brand.queryBrandCount);
-    server.get('/api/admin/:adminId/producer' , brand.queryProducer);
+    server.get('/api/producer' , brand.queryProducer);
+    server.post({path:'/api/admin/:adminId/producer' ,contentType: 'application/json'}, brand.createProducer);
+    server.put({path:'/api/admin/:adminId/producer/:producerId' ,contentType: 'application/json'}, brand.updateProducer);
 
 
     /**
@@ -174,10 +176,11 @@ function createServer() {
     server.get('/api/user/:userId/offer' , offer.queryOfferFullInfo);
     server.post({path:'/api/user/:userId/offer',contentType: 'application/json'},offer.createProcureOffer);
     server.put({path:'/api/user/:userId/offer/:offerId',contentType: 'application/json'} ,offer.updateProcureOffer);
+    server.put({path:'/api/admin/:adminId/offer/:offerId/status',contentType: 'application/json'} ,offer.updateProcureOfferStatus);
     server.get('/api/admin/:adminId/offer' , offer.queryOfferFullInfo);
 
     /**
-     * Offer Module
+     * Open Module
      */
     server.get('/api/tax' , open.getTaxRate);
     /**

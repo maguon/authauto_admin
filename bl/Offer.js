@@ -102,10 +102,24 @@ function createProcureOffer(req,res,next){
 }
 
 
+function updateProcureOfferStatus (req,res,next){
+    var params = req.params ;
+    procureOfferDAO.updateProcureOfferStatus(params,function(error,result){
+        if (error) {
+            logger.error(' updateProcureOfferStatus ' + error.message);
+            throw sysError.InternalError(error.message,sysMsg.SYS_INTERNAL_ERROR_MSG);
+        } else {
+            logger.info(' updateProcureOfferStatus ' + 'success');
+            resUtil.resetUpdateRes(res,result,null);
+            return next();
+        }
+    })
+}
 module.exports ={
     queryOfferFullInfo : queryOfferFullInfo ,
     queryProcureOffer : queryProcureOffer ,
     updateProcureOffer : updateProcureOffer ,
-    createProcureOffer : createProcureOffer
+    createProcureOffer : createProcureOffer ,
+    updateProcureOfferStatus : updateProcureOfferStatus
 
 }
