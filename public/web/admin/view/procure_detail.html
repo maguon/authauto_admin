@@ -242,7 +242,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="offer in offerArray">
+                            <tr ng-repeat="offer in offerArray" ng-if="offer.status==2">
                                 <td>{{offer.actual_price |currency:"$"}}</td>
                                 <td>{{offer.actual_qty}}</td>
                                 <td>{{offer.tax}}</td>

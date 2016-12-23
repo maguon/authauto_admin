@@ -57,6 +57,8 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
                 $('#addOfferBtn')[0].disabled = false;
                 if(data.success){
                     $scope.step = $scope.step + 1;
+                    $baseFunction.clearCookieCart();
+                    $rootScope.procureCount = 0;
                 }else{
                     WarningBox(data.msg);
                     //$scope.password="";
@@ -70,13 +72,18 @@ app.controller("checkoutController", ['$rootScope','$scope','$mpAjax','$location
             if($scope.step ==1 ){
                 if($scope.checkProcure()){
                     $scope.step = $scope.step + 1;
+                    return;
                 }else{
+                    //console.log('ddd');
                     WarningBox('Please enter price and quantity .')
+                    return;
                 }
             }else if($scope.step ==2 ){
                 $scope.addOffer();
+                return;
             }else if($scope.step ==3){
                 $location.path('/offer')
+                return;
             }else{
                 return;
             }

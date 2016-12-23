@@ -19,7 +19,7 @@ app.controller("systemController", ['$rootScope','$scope','$mpAjax','$location',
         $scope.addProducer = function(){
             var params = {
                 nameCn : $scope.nameCn,
-                nameEn : $scope.nameEn,
+                nameEn : $scope.nameEn
             }
             $mpAjax.post('/admin/'+this.$root.adminId+'/producer',params).then(function(data){
                 if(data.success){
@@ -41,7 +41,7 @@ app.controller("systemController", ['$rootScope','$scope','$mpAjax','$location',
         $scope.saveProducer = function(){
             var params = {
                 nameCn : $scope.nameCn,
-                nameEn : $scope.nameEn,
+                nameEn : $scope.nameEn
             }
             $mpAjax.put('/admin/'+this.$root.adminId+'/producer/'+$scope.producerId,params).then(function(data){
                 if(data.success){
