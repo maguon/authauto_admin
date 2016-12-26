@@ -22,7 +22,7 @@ var loggerConfig = {
         { type: 'console' },
         {
             "type": "file",
-            "filename": "../auto.log",
+            "filename": "../logs/auto.log",
             "maxLogSize": 2048000,
             "backups": 10
         }
