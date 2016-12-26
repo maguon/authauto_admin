@@ -70,7 +70,6 @@ function usage(msg) {
             default: 'admin_login.html',
             maxAge: 0
         }));
-        logger.info('AUTH-AUTO admin server has been  started ,listening at %s', adminServer.url);
+        logger.info('AUTH-AUTO admin  server has been  started ,listening at %s', adminServer.url);
     });
-
 })();
