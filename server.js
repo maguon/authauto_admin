@@ -96,8 +96,8 @@ function createServer() {
     //server.use(apiUtil.save);
 
     //server api doc
-    server.get(/\/apidoc\/?.*/, restify.serveStatic({
-        directory: './public/apidoc'
+    server.get(/\/docs\/?.*/, restify.serveStatic({
+        directory: './public/'
     }));
 
     // static files: /, /index.html, /images...
