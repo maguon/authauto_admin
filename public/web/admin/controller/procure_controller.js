@@ -23,7 +23,7 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
             })
         }
         $scope.getBrand = function(){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/brand').then(function(data){
+            $mpAjax.get('/brand').then(function(data){
                 if(data.success){
                     $scope.brandArray = data.result;
                 }else{

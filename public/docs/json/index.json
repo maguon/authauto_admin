@@ -10,61 +10,83 @@
     },
     "license": {
       "name": "Github.com",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "url": "https://github.com/maguon/authauto_admin/blob/master/LICENSE"
     }
   },
-  "host": "http://localhost:8081",
+  "host": "localhost:8081",
   "basePath": "/api",
   "tags": [
     {
-      "name": "pet",
-      "description": "Everything about your Pets",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://myxxjs.com"
-      }
+      "name": "admin",
+      "description": "Admin of authauto api "
     },
     {
-      "name": "store",
-      "description": "Access to Petstore orders"
+      "name": "image",
+      "description": "authauto image api"
+    },
+    {
+      "name": "feedback",
+      "description": "authauto user feedback"
+    },
+    {
+      "name": "brand",
+      "description": "authauto brand info"
+    },
+    {
+      "name": "auto",
+      "description": "authauto auto info"
+    },
+    {
+      "name": "procure",
+      "description": "authauto procure info"
+    },
+    {
+      "name": "open",
+      "description": "authauto open info"
+    },
+    {
+      "name": "offer",
+      "description": "authauto  supplier offer info"
+    },
+    {
+      "name": "supplier",
+      "description": "authauto supplier info"
+    },
+    {
+      "name": "message",
+      "description": "authauto message info"
     },
     {
       "name": "user",
-      "description": "Operations about user",
-      "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
-      }
+      "description": "authauto user info"
     }
   ],
   "schemes": [
     "http"
   ],
   "paths": {
-    "/pet": {
+    "/admin/do/login": {
       "post": {
         "tags": [
-          "pet"
+          "admin"
         ],
-        "summary": "Add a new pet to the store",
+        "summary": "Admin user do login",
         "description": "",
-        "operationId": "addPet",
+        "operationId": "admin login",
         "consumes": [
-          "application/json",
-          "application/xml"
+          "application/json"
         ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "Pet object that needs to be added to the store",
+            "description": "Admin base info ",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Pet"
+              "$ref": "#/definitions/admin"
             }
           }
         ],
@@ -72,315 +94,217 @@
           "405": {
             "description": "Invalid input"
           }
-        },
-        "security": [
+        }
+      }
+    },
+    "/admin/{adminId}/token/{token}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "A new token for admin",
+        "description": "Get a new token for admin by a old",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "description": "admin old token",
+            "required": true,
+            "type": "string"
+
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/admin"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "query admin user info",
+        "description": "Get admin user info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/admin"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
       },
       "put": {
         "tags": [
-          "pet"
+          "admin"
         ],
-        "summary": "Update an existing pet",
-        "description": "",
-        "operationId": "updatePet",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
+        "summary": "update admin user info",
+        "description": "update admin user info",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "admin",
             "in": "body",
-            "name": "body",
-            "description": "Pet object that needs to be added to the store",
+            "description": "admin base info:name,phone and remark is needed .",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Pet"
+              "$ref": "#/definitions/admin"
             }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
-          },
-          "405": {
-            "description": "Validation exception"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    },
-    "/pet/findByStatus": {
-      "get": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Finds Pets by status",
-        "description": "Multiple status values can be provided with comma separated strings",
-        "operationId": "findPetsByStatus",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "status",
-            "in": "query",
-            "description": "Status values that need to be considered for filter",
-            "required": true,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "available",
-                "pending",
-                "sold"
-              ],
-              "default": "available"
-            },
-            "collectionFormat": "multi"
+
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
+              "type": "object",
               "items": {
-                "$ref": "#/definitions/Pet"
+                "$ref": "#/definitions/admin"
               }
             }
           },
           "400": {
-            "description": "Invalid status value"
+            "description": "Invalid token value or invalid admin id"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
+        }
       }
     },
-    "/pet/findByTags": {
-      "get": {
+    "/admin/{adminId}/password": {
+      "put": {
         "tags": [
-          "pet"
+          "admin"
         ],
-        "summary": "Finds Pets by tags",
-        "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-        "operationId": "findPetsByTags",
+        "summary": "update admin user password",
+        "description": "update admin user password",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "tags",
-            "in": "query",
-            "description": "Tags to filter by",
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
             "required": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
+            "type": "integer"
+
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "admin base info:origin and new password is needed .",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/password"
+            }
+
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
+              "type": "object",
               "items": {
-                "$ref": "#/definitions/Pet"
+                "$ref": "#/definitions/password"
               }
             }
           },
           "400": {
-            "description": "Invalid tag value"
+            "description": "Invalid token value or invalid admin id"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ],
-        "deprecated": true
+        }
       }
     },
-    "/pet/{petId}": {
+    "/image/{imageId}": {
       "get": {
         "tags": [
-          "pet"
+          "image"
         ],
-        "summary": "Find pet by ID",
-        "description": "Returns a single pet",
-        "operationId": "getPetById",
+        "summary": "get a image file",
+        "description": "Get a image info ,try it out by navigator",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "petId",
+            "name": "imageId",
             "in": "path",
-            "description": "ID of pet to return",
+            "description": "image id",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
+
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Pet"
-            }
+            "description": "successful operation"
           },
           "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
+            "description": "Invalid image id value"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Updates a pet in the store with form data",
-        "description": "",
-        "operationId": "updatePetWithForm",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "petId",
-            "in": "path",
-            "description": "ID of pet that needs to be updated",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "name",
-            "in": "formData",
-            "description": "Updated name of the pet",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "status",
-            "in": "formData",
-            "description": "Updated status of the pet",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Deletes a pet",
-        "description": "",
-        "operationId": "deletePet",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "header",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "petId",
-            "in": "path",
-            "description": "Pet id to delete",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
+        }
       }
     },
-    "/pet/{petId}/uploadImage": {
+    "/admin/{adminId}/image": {
       "post": {
         "tags": [
-          "pet"
+          "image"
         ],
-        "summary": "uploads an image",
-        "description": "",
-        "operationId": "uploadFile",
+        "summary": "upload a image",
+        "description": "Admin user upload a image ",
+        "operationId": "upload image",
         "consumes": [
           "multipart/form-data"
         ],
@@ -389,34 +313,33 @@
         ],
         "parameters": [
           {
-            "name": "petId",
+            "name": "adminId",
             "in": "path",
-            "description": "ID of pet to update",
+            "description": "ID of admin user",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "additionalMetadata",
-            "in": "formData",
+            "name": "body",
+            "in": "body",
             "description": "Additional data to pass to server",
-            "required": false,
-            "type": "string"
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/imageMetaData"
+            }
           },
           {
-            "name": "file",
+            "name": "image",
             "in": "formData",
             "description": "file to upload",
-            "required": false,
+            "required": true,
             "type": "file"
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ApiResponse"
-            }
+          "405": {
+            "description": "Invalid input"
           }
         },
         "security": [
@@ -429,132 +352,823 @@
         ]
       }
     },
-    "/store/inventory": {
-      "get": {
-        "tags": [
-          "store"
-        ],
-        "summary": "Returns pet inventories by status",
-        "description": "Returns a map of status codes to quantities",
-        "operationId": "getInventory",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "integer",
-                "format": "int32"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/store/order": {
+    "/feedback": {
       "post": {
         "tags": [
-          "store"
+          "feedback"
         ],
-        "summary": "Place an order for a pet",
+        "summary": "create a feedback ",
         "description": "",
-        "operationId": "placeOrder",
+        "operationId": "userFeedback",
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "order placed for purchasing the pet",
+            "description": "feedback info ",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Order"
+              "$ref": "#/definitions/feedback"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Order"
-            }
-          },
-          "400": {
-            "description": "Invalid Order"
+          "405": {
+            "description": "Invalid input"
           }
-        }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
       }
     },
-    "/store/order/{orderId}": {
+    "/admin/{adminId}/feedback": {
       "get": {
         "tags": [
-          "store"
+          "feedback"
         ],
-        "summary": "Find purchase order by ID",
-        "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
-        "operationId": "getOrderById",
+        "summary": "query feedback info",
+        "description": "",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "orderId",
+            "name": "adminId",
             "in": "path",
-            "description": "ID of pet that needs to be fetched",
+            "description": "admin id",
             "required": true,
-            "type": "integer",
-            "maximum": 10.0,
-            "minimum": 1.0,
-            "format": "int64"
+            "type": "integer"
+
+          },
+          {
+            "name": "feedbackId",
+            "in": "query",
+            "description": "feedbackId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "start  for pagination",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": " offset size for pagination",
+            "required": false,
+            "type": "integer"
+
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Order"
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/feedback"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Invalid token value"
+          }
+        }
+      }
+    },
+    "/api/admin/{adminId}/feedback/{feedbackId}/status/{status}": {
+      "put": {
+        "tags": [
+          "feedback"
+        ],
+        "summary": "update feedback status",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
           },
-          "404": {
-            "description": "Order not found"
+          {
+            "name": "feedbackId",
+            "in": "path",
+            "description": "feedbackId",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "description": "status",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/brand": {
+      "post": {
+        "tags": [
+          "brand"
+        ],
+        "summary": "Admin create a brand",
+        "description": "",
+        "operationId": "createBrand",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "brand  info ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/brand"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/producer": {
+      "post": {
+        "tags": [
+          "brand"
+        ],
+        "summary": "Admin create a producer",
+        "description": "",
+        "operationId": "createProducer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "producer  info ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producer"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/brand/{brandId}": {
+      "put": {
+        "tags": [
+          "brand"
+        ],
+        "summary": "update brand info",
+        "description": "update brand info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "brand",
+            "in": "body",
+            "description": "brand base info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/brand"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/producer/{producerId}": {
+      "put": {
+        "tags": [
+          "brand"
+        ],
+        "summary": "update producer info",
+        "description": "update producer info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "producer",
+            "in": "body",
+            "description": "producer base info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producer"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
+      }
+    },
+    "/brand": {
+      "get": {
+        "tags": [
+          "brand"
+        ],
+        "summary": "query brand info",
+        "description": "Get brand info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "query",
+            "description": "brandId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "start  for pagination",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": " offset size for pagination",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/brand"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid parameter"
+          }
+        }
+      }
+    },
+    "/producer": {
+      "get": {
+        "tags": [
+          "brand"
+        ],
+        "summary": "query producer info",
+        "description": "Get producer info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "producerId",
+            "in": "query",
+            "description": "brandId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "start  for pagination",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": " offset size for pagination",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/producer"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid parameter"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/brandCount": {
+      "get": {
+        "tags": [
+          "brand"
+        ],
+        "summary": "query brand count",
+        "description": "Get brand count",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/brand"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid parameter"
+          }
+        }
+      }
+    },
+    "/auto": {
+      "get": {
+        "tags": [
+          "auto"
+        ],
+        "summary": "query auto info",
+        "description": "Get auto info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "autoId",
+            "in": "query",
+            "description": "autoId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "brandId",
+            "in": "query",
+            "description": "brandId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "start  for pagination",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": " offset size for pagination",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/auto"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid parameter"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/autoCount": {
+      "get": {
+        "tags": [
+          "auto"
+        ],
+        "summary": "query auto count",
+        "description": "Get auto count",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "adminId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/auto"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid parameter"
+          }
+        }
+      }
+    },
+    "/auto/{autoId}/extra": {
+      "get": {
+        "tags": [
+          "auto"
+        ],
+        "summary": "query auto extra info",
+        "description": "Get auto extra info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "autoId",
+            "in": "path",
+            "description": "autoId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type : automatic or manual",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "auto extra info :year",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/autoExtra"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid parameter"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/auto": {
+      "post": {
+        "tags": [
+          "auto"
+        ],
+        "summary": "Admin create a auto",
+        "description": "",
+        "operationId": "createAuto",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "auto base  info ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/auto"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/auto/{autoId}/extra": {
+      "post": {
+        "tags": [
+          "auto"
+        ],
+        "summary": "Admin create a auto",
+        "description": "",
+        "operationId": "createAuto",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "autoId",
+            "in": "path",
+            "description": "auto id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "auto extra  info ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/autoExtra"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/auto/{autoId}": {
+      "put": {
+        "tags": [
+          "auto"
+        ],
+        "summary": "update auto info",
+        "description": "update auto info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "autoId",
+            "in": "path",
+            "description": "auto id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "auto",
+            "in": "body",
+            "description": "auto base info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/auto"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/admin"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
           }
         }
       },
       "delete": {
         "tags": [
-          "store"
+          "auto"
         ],
-        "summary": "Delete purchase order by ID",
-        "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
-        "operationId": "deleteOrder",
+        "summary": "Deletes a auto",
+        "description": "",
+        "operationId": "deleteAuto",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "orderId",
+            "name": "adminId",
             "in": "path",
-            "description": "ID of the order that needs to be deleted",
+            "description": "admin id",
             "required": true,
-            "type": "integer",
-            "minimum": 1.0,
-            "format": "int64"
+            "type": "integer"
+          },
+          {
+            "name": "autoId",
+            "in": "path",
+            "description": "auto id to delete",
+            "required": true,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -562,9 +1176,1151 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Order not found"
+            "description": "auto not found"
           }
         }
+      }
+    },
+    "/admin/{adminId}/extra/{extraId}": {
+      "put": {
+        "tags": [
+          "auto"
+        ],
+        "summary": "update auto info",
+        "description": "update auto info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "extraId",
+            "in": "path",
+            "description": "extra id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "autoExtra",
+            "in": "body",
+            "description": "auto extra info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/autoExtra"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/admin"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
+      }
+    },
+    "/procure": {
+      "get": {
+        "tags": [
+          "procure"
+        ],
+        "summary": "query procure info",
+        "description": "Get procure info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "procureId",
+            "in": "query",
+            "description": "procureId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "procureIds",
+            "in": "query",
+            "description": "procureIds",
+            "required": false,
+            "type": "string"
+
+          },
+          {
+            "name": "brandId",
+            "in": "query",
+            "description": "brandId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "autoId",
+            "in": "query",
+            "description": "autoId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "start  for pagination",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": " offset size for pagination",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/procure"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid parameter"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/procure": {
+      "post": {
+        "tags": [
+          "procure"
+        ],
+        "summary": "Admin create a procure",
+        "description": "",
+        "operationId": "createProcure",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "procure  info ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/procure"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/procure/{procureId}": {
+      "put": {
+        "tags": [
+          "procure"
+        ],
+        "summary": "update procure info",
+        "description": "update procure info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "procureId",
+            "in": "path",
+            "description": "procure id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "procure",
+            "in": "body",
+            "description": "procure info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/procure"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/procure/{procureId}/status/{status}": {
+      "put": {
+        "tags": [
+          "procure"
+        ],
+        "summary": "update procure info",
+        "description": "update procure info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "procureId",
+            "in": "path",
+            "description": "procure id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "description": "procure status",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
+      }
+    },
+    "/user/{userId}/offer": {
+      "get": {
+        "tags": [
+          "offer"
+        ],
+        "summary": "query  user offer",
+        "description": "Get  user offer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/offer"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "offer"
+        ],
+        "summary": "create a user offer",
+        "description": "create offer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "offer",
+            "in": "body",
+            "description": "offer info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/offer"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/user/{userId}/offer/{offerId}": {
+      "put": {
+        "tags": [
+          "offer"
+        ],
+        "summary": "update offer info",
+        "description": "update offer info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "offer id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "offer",
+            "in": "body",
+            "description": "offer info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/offer"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/offer": {
+      "get": {
+        "tags": [
+          "offer"
+        ],
+        "summary": "query  user offer",
+        "description": "Get  user offer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "supplierId",
+            "in": "query",
+            "description": "supplier id",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "procureId",
+            "in": "query",
+            "description": "procure id",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/offer"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/offer/{offerId}/status": {
+      "put": {
+        "tags": [
+          "offer"
+        ],
+        "summary": "update offer status and info",
+        "description": "update offer status and info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "offer id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "procureId",
+            "in": "query",
+            "description": "offer procure id",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "supplierId",
+            "in": "query",
+            "description": "supplier id",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "user id",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "offerStatus",
+            "in": "body",
+            "description": "offer status info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/offerStatus"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/tax": {
+      "get": {
+        "tags": [
+          "open"
+        ],
+        "summary": "query  unite state tax rate",
+        "description": "query tax",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+          {
+            "name": "zipcode",
+            "in": "query",
+            "description": " postal:90001",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/tax"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid postal id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/supplier": {
+      "get": {
+        "tags": [
+          "supplier"
+        ],
+        "summary": "query  supplier list",
+        "description": "query supplier",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "adminId",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "supplierId",
+            "in": "query",
+            "description": "supplierId",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "supplier email",
+            "required": false,
+            "type": "string"
+
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "supplier phone",
+            "required": false,
+            "type": "string"
+
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "supplier state",
+            "required": false,
+            "type": "string"
+
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "supplier city",
+            "required": false,
+            "type": "string"
+
+          },
+          {
+            "name": "bizName",
+            "in": "query",
+            "description": "supplier biz name",
+            "required": false,
+            "type": "string"
+
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "supplier user id",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "zipcode",
+            "in": "query",
+            "description": " postal:90001",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "supplier status",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "supplier list start pos",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "supplier list size for pagination",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/supplier"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid postal id"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "supplier"
+        ],
+        "summary": "admin create supplier",
+        "description": "admin create supplier",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "supplier",
+            "in": "body",
+            "description": "supplier info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/supplier"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/supplierCount": {
+      "get": {
+        "tags": [
+          "supplier"
+        ],
+        "summary": "query supplier total count",
+        "description": "query supplier count",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "adminId",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "supplier status",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
+      }
+    },
+    "/user/{userId}/supplier": {
+      "get": {
+        "tags": [
+          "supplier"
+        ],
+        "summary": "query user supplier info",
+        "description": "query user supplier info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/supplier"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid postal id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/supplier/{supplierId}": {
+      "put": {
+        "tags": [
+          "supplier"
+        ],
+        "summary": "update supplier info",
+        "description": "update supplier info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "supplier",
+            "in": "path",
+            "description": "supplier id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "supplier",
+            "in": "body",
+            "description": "supplier info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/supplier"
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/supplier/{supplierId}/status/{status}": {
+      "put": {
+        "tags": [
+          "supplier"
+        ],
+        "summary": "update supplier status",
+        "description": "update supplier status",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "admin id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "supplierId",
+            "in": "path",
+            "description": "supplier id",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "description": "supplier status",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/user": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "query  user list",
+        "description": "query user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "adminId",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "user id",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "user email",
+            "required": false,
+            "type": "string"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "user status",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "user type",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": " list start pos",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "list size for pagination",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid postal id"
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/userCount": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "query user total count",
+        "description": "query user count",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "adminId",
+            "required": true,
+            "type": "integer"
+
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "user status",
+            "required": false,
+            "type": "integer"
+
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "user type",
+            "required": false,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid admin id"
+          }
+        }
+      }
+    },
+    "/user/{userId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "query user profile",
+        "description": "query user info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        }
+      }
+    },
+    "/invite/{inviteCode}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "query inviteInfo",
+        "description": "query invite info",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "inviteCode",
+            "in": "path",
+            "description": "invite code 32bit",
+            "required": true,
+            "type": "integer"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/invite"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token value or invalid user id"
+          }
+        },
+        "deprecated": true
       }
     },
     "/user": {
@@ -572,270 +2328,167 @@
         "tags": [
           "user"
         ],
-        "summary": "Create user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "createUser",
+        "summary": "user register",
+        "description": "user sign up",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
+            "name": "user",
             "in": "body",
-            "name": "body",
-            "description": "Created user object",
+            "description": "user info",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/user"
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/user/createWithArray": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Creates list of users with given input array",
-        "description": "",
-        "operationId": "createUsersWithArrayInput",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "List of user object",
-            "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/user/createWithList": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Creates list of users with given input array",
-        "description": "",
-        "operationId": "createUsersWithListInput",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "List of user object",
-            "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/user/login": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Logs user into the system",
-        "description": "",
-        "operationId": "loginUser",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "query",
-            "description": "The user name for login",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "The password for login in clear text",
-            "required": true,
-            "type": "string"
+
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "string"
-            },
-            "headers": {
-              "X-Rate-Limit": {
-                "type": "integer",
-                "format": "int32",
-                "description": "calls per hour allowed by the user"
-              },
-              "X-Expires-After": {
-                "type": "string",
-                "format": "date-time",
-                "description": "date in UTC when token expires"
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
               }
             }
           },
           "400": {
-            "description": "Invalid username/password supplied"
+            "description": "Invalid token value or invalid user id"
           }
         }
       }
     },
-    "/user/logout": {
-      "get": {
+    "/userLogin": {
+      "post": {
         "tags": [
           "user"
         ],
-        "summary": "Logs out current logged in user session",
-        "description": "",
-        "operationId": "logoutUser",
+        "summary": "user login",
+        "description": "user sign in",
         "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/user/{username}": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Get user by user name",
-        "description": "",
-        "operationId": "getUserByName",
-        "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "name": "user",
+            "in": "body",
+            "description": "user info",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/User"
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
             }
           },
           "400": {
-            "description": "Invalid username supplied"
-          },
-          "404": {
-            "description": "User not found"
+            "description": "Invalid token value or invalid user id"
           }
         }
-      },
-      "put": {
+      }
+    },
+    "/invite/{inviteCdoe}/supplier": {
+      "post": {
         "tags": [
           "user"
         ],
-        "summary": "Updated user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "updateUser",
+        "summary": "user register and relation supplier",
+        "description": "user register with invite code",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "username",
+            "name": "inviteCode",
             "in": "path",
-            "description": "name that need to be updated",
-            "required": true,
-            "type": "string"
+            "description": "invite code base64",
+            "required": true
           },
           {
+            "name": "user",
             "in": "body",
-            "name": "body",
-            "description": "Updated user object",
+            "description": "user info",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/user"
             }
+
           }
         ],
         "responses": {
-          "400": {
-            "description": "Invalid user supplied"
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
           },
-          "404": {
-            "description": "User not found"
+          "400": {
+            "description": "Invalid token value or invalid user id"
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/admin/{adminId}/supplier/{supplier}/invite": {
+      "post": {
         "tags": [
-          "user"
+          "message"
         ],
-        "summary": "Delete user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "deleteUser",
+        "summary": "admin send a invite email",
+        "description": "invite supplier",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "username",
+            "name": "adminId",
             "in": "path",
-            "description": "The name that needs to be deleted",
+            "description": "admin id",
+            "required": true
+          },
+          {
+            "name": "supplierId",
+            "in": "path",
+            "description": "supplier id",
+            "required": true
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "user info",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+
           }
         ],
         "responses": {
-          "400": {
-            "description": "Invalid username supplied"
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/ApiResponse"
+              }
+            }
           },
-          "404": {
-            "description": "User not found"
+          "400": {
+            "description": "Invalid token value or invalid user id"
           }
         }
       }
@@ -844,7 +2497,7 @@
   "securityDefinitions": {
     "petstore_auth": {
       "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "authorizationUrl": "http://oauth.myxxjs.com/api",
       "flow": "implicit",
       "scopes": {
         "write:pets": "modify pets in your account",
@@ -858,65 +2511,10 @@
     }
   },
   "definitions": {
-    "Order": {
+    "user": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "petId": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "quantity": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "shipDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "status": {
-          "type": "string",
-          "description": "Order Status",
-          "enum": [
-            "placed",
-            "approved",
-            "delivered"
-          ]
-        },
-        "complete": {
-          "type": "boolean",
-          "default": false
-        }
-      },
-      "xml": {
-        "name": "Order"
-      }
-    },
-    "Category": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "xml": {
-        "name": "Category"
-      }
-    },
-    "User": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
+
         "username": {
           "type": "string"
         },
@@ -935,94 +2533,410 @@
         "phone": {
           "type": "string"
         },
-        "userStatus": {
-          "type": "integer",
-          "format": "int32",
-          "description": "User Status"
-        }
-      },
-      "xml": {
-        "name": "User"
-      }
-    },
-    "Tag": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
+        "gender": {
+          "type": "integer"
         },
-        "name": {
-          "type": "string"
+        "type": {
+          "type": "integer"
         }
       },
       "xml": {
-        "name": "Tag"
+        "name": "user"
       }
     },
-    "Pet": {
+    "admin": {
       "type": "object",
       "required": [
-        "name",
-        "photoUrls"
+        "id",
+        "username",
+        "password"
       ],
       "properties": {
         "id": {
           "type": "integer",
           "format": "int64"
         },
-        "category": {
-          "$ref": "#/definitions/Category"
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
         },
         "name": {
-          "type": "string",
-          "example": "doggie"
+          "type": "string"
         },
-        "photoUrls": {
-          "type": "array",
-          "xml": {
-            "name": "photoUrl",
-            "wrapped": true
-          },
-          "items": {
-            "type": "string"
-          }
+        "phone": {
+          "type": "string"
         },
-        "tags": {
-          "type": "array",
-          "xml": {
-            "name": "tag",
-            "wrapped": true
-          },
-          "items": {
-            "$ref": "#/definitions/Tag"
-          }
+        "remark": {
+          "type": "string"
         },
-        "status": {
-          "type": "string",
-          "description": "pet status in the store",
+        "admin_status": {
+          "type": "integer",
+          "description": "admin status",
           "enum": [
-            "available",
-            "pending",
-            "sold"
+            "0",
+            "1"
           ]
         }
       },
       "xml": {
-        "name": "Pet"
+        "name": "admin"
+      }
+    },
+    "password": {
+      "type": "object",
+      "required": [
+        "originPassword",
+        "newPassword"
+      ],
+      "properties": {
+        "originPassword": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "password"
+      }
+    },
+    "imageMetaData": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "integer"
+        }
+      },
+      "xml": {
+        "name": "imageMetaData"
+      }
+    },
+    "feedback": {
+      "type": "object",
+      "required": [
+        "email",
+        "name",
+        "content"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "feedback"
+      }
+    },
+    "brand": {
+      "type": "object",
+      "required": [
+        "brandCn",
+        "brandEn",
+        "producerId"
+      ],
+      "properties": {
+        "brandCn": {
+          "type": "string"
+        },
+        "brandEn": {
+          "type": "string"
+        },
+        "producerId": {
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "brand"
+      }
+    },
+    "producer": {
+      "type": "object",
+      "required": [
+        "nameCn",
+        "nameEn"
+      ],
+      "properties": {
+        "nameCn": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "producer"
+      }
+    },
+    "auto": {
+      "type": "object",
+      "required": [
+        "nameCn",
+        "nameEn",
+        "brandId"
+      ],
+      "properties": {
+        "nameCn": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "brandId": {
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "auto"
+      }
+    },
+    "autoExtra": {
+      "type": "object",
+      "required": [
+        "autoId",
+        "year",
+        "vol",
+        "item",
+        "type"
+      ],
+      "properties": {
+        "autoId": {
+          "type": "integer"
+        },
+        "year": {
+          "type": "integer"
+        },
+        "vol": {
+          "type": "float"
+        },
+        "item": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        }
+      },
+      "xml": {
+        "name": "autoExtra"
+      }
+    },
+    "procure": {
+      "type": "object",
+      "required": [
+        "autoId",
+        "nameCn",
+        "nameEn",
+        "brandId",
+        "brandCn",
+        "brandEn",
+        "qty"
+      ],
+      "properties": {
+        "autoId": {
+          "type": "integer"
+        },
+        "brandId": {
+          "type": "integer"
+        },
+        "nameCn": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "brandCn": {
+          "type": "string"
+        },
+        "brandCn": {
+          "type": "string"
+        },
+        "img": {
+          "type": "string"
+        },
+        "extraId": {
+          "type": "integer"
+        },
+        "extraVol": {
+          "type": "float"
+        },
+        "extraItem": {
+          "type": "string"
+        },
+        "extraType": {
+          "type": "integer"
+        },
+        "extraYear": {
+          "type": "integer"
+        },
+        "qty": {
+          "type": "integer"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "xml": {
+        "name": "procure"
+      }
+    },
+    "offer": {
+      "type": "object",
+      "required": [
+        "userId",
+        "procureId",
+        "supplierId",
+        "price",
+        "qty"
+      ],
+      "properties": {
+        "userId": {
+          "type": "integer"
+        },
+        "procureId": {
+          "type": "integer"
+        },
+        "supplierId": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "float"
+        },
+        "qty": {
+          "type": "integer"
+        },
+        "tax": {
+          "type": "float"
+        }
+      },
+      "xml": {
+        "name": "offer"
+      }
+    },
+    "offerStatus": {
+      "type": "object",
+      "required": [
+        "actualPrice",
+        "actualQty",
+        "status"
+      ],
+      "properties": {
+        "offerId": {
+          "type": "integer"
+        },
+        "procureId": {
+          "type": "integer"
+        },
+        "supplierId": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "actualPrice": {
+          "type": "float"
+        },
+        "actualQty": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "integer"
+        }
+      },
+      "xml": {
+        "name": "offerStatus"
+      }
+    },
+    "supplier": {
+      "type": "object",
+      "required": [
+        "bizName",
+        "contact",
+        "email"
+      ],
+      "properties": {
+        "bizName": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "offerStatus"
       }
     },
     "ApiResponse": {
       "type": "object",
       "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
+        "success": {
+          "type": "boolean"
         },
-        "type": {
-          "type": "string"
+        "result": {
+          "type": "object"
         },
-        "message": {
+        "msg": {
           "type": "string"
         }
       }

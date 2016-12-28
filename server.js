@@ -142,7 +142,7 @@ function createServer() {
      */
     server.post({path:'/api/admin/:adminId/brand',contentType: 'application/json'},brand.createBrand);
     server.put({path:'/api/admin/:adminId/brand/:brandId',contentType: 'application/json'} ,brand.updateBrand);
-    server.get('/api/admin/:adminId/brand' , brand.queryBrand);
+    server.get('/api/brand' , brand.queryBrand);
     server.get('/api/admin/:adminId/brandCount' , brand.queryBrandCount);
     server.get('/api/producer' , brand.queryProducer);
     server.post({path:'/api/admin/:adminId/producer' ,contentType: 'application/json'}, brand.createProducer);
@@ -157,7 +157,7 @@ function createServer() {
     server.put({path:'/api/admin/:adminId/auto/:autoId',contentType: 'application/json'} ,auto.updateAuto);
     server.del('/api/admin/:adminId/auto/:autoId' , auto.removeAuto);
     server.get('/api/admin/:adminId/auto' , auto.queryAuto);
-    server.get('/api/admin/:adminId/auto/:autoId/extra' , auto.queryAutoExtra);
+    server.get('/api/auto/:autoId/extra' , auto.queryAutoExtra);
     server.post({path:'/api/admin/:adminId/auto/:autoId/extra',contentType: 'application/json'},auto.createAutoExtra);
     server.put({path:'/api/admin/:adminId/extra/:extraId',contentType: 'application/json'} ,auto.updateAutoExtra);
     server.get('/api/admin/:adminId/autoCount' , auto.queryAutoCount);
@@ -188,7 +188,7 @@ function createServer() {
      */
     server.post({path:'/api/admin/:adminId/supplier',contentType: 'application/json'},supplier.createSupplier);
     server.put({path:'/api/admin/:adminId/supplier/:supplierId',contentType: 'application/json'} ,supplier.updateSupplier);
-    server.put({path:'/api/admin/:adminId/supplier/:supplierId/status/:supplierStatus',contentType: 'application/json'} ,
+    server.put({path:'/api/admin/:adminId/supplier/:supplierId/status/:status',contentType: 'application/json'} ,
         supplier.updateSupplierStatus);
     server.get('/api/admin/:adminId/supplier' , supplier.querySupplier);
     server.get('/api/admin/:adminId/supplierCount' , supplier.querySupplierCount);

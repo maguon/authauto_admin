@@ -49,7 +49,7 @@ function updateSupplier(params,callback){
 function updateSupplierStatus(params,callback){
     var query = " update supplier set status=? where id = ? " ;
     var paramsArray=[],i=0;
-    paramsArray[i++]=params.supplierStatus;
+    paramsArray[i++]=params.status;
     paramsArray[i]=params.supplierId;
     db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' updateSupplierStatus ');

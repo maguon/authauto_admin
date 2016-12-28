@@ -118,7 +118,7 @@ function getAutoExtra(params,callback){
     }
 
     db.dbQuery(query,paramsArray,function(error,rows){
-        logger.debug(' getAuto ');
+        logger.debug(' getAutoExtra ');
         return callback(error,rows);
     });
 }

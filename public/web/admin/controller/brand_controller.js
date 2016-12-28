@@ -8,7 +8,7 @@ app.controller("brandController", ['$rootScope','$scope','$mpAjax','$location','
         $scope.brandArray = [];
         $scope.producerArray = [];
         $scope.getBrand = function(){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/brand').then(function(data){
+            $mpAjax.get('/brand').then(function(data){
                 if(data.success){
                     $scope.brandArray = data.result;
                 }else{

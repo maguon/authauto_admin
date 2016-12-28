@@ -90,7 +90,7 @@ function getUser(params,callback) {
     });
 }
 function getUserCount(params,callback) {
-    var query = " select count(id) from user_info where id is not null ";
+    var query = " select count(id) user_count from user_info where id is not null ";
     var paramsArray=[],i=0;
     if(params.status){
         paramsArray[i++] = params.status;

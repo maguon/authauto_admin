@@ -64,7 +64,11 @@ function getBrand(params,callback){
         paramsArray[i++] = params.status;
         query = query + " and ab.status = ? ";
     }
-
+    if (params.start && params.size) {
+        paramsArray[i++] = parseInt(params.start);
+        paramsArray[i++] = parseInt(params.size);
+        query += " limit ? , ? "
+    }
     db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' getBrand ');
         return callback(error,rows);
@@ -96,6 +100,11 @@ function getProducer(params ,callback){
         query = query + " and id = ? ";
     }
 
+    if (params.start && params.size) {
+        paramsArray[i++] = parseInt(params.start);
+        paramsArray[i++] = parseInt(params.size);
+        query += " limit ? , ? "
+    }
     db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' getProducer ');
         return callback(error,rows);
