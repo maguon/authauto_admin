@@ -109,12 +109,12 @@
                     <div class="modal-body">
                         <div class="rows">
                             <div class="col-md-6">
-                                <p>
+                               <!-- <p>
 								<span class="fa-stack fa-2x text-primary">
 									<i class="fa fa-openid fa-stack-1x" title="报价ID"></i>
 								</span>
                                     {{offer.id}}
-                                </p>
+                                </p>-->
 
                                 <p>
 								<span class="fa-stack fa-2x text-primary">
@@ -253,6 +253,7 @@
                                 <td>{{offer.state}}/{{offer.city}}</td>
                                 <td style="letter-spacing: 5px;">
                                     <a id="supplierBtn" data-target="#modal-supplier" data-toggle="modal"></a><i class="fa fa-user" ng-click="showSupplier(offer.supplier_id)"></i>
+                                    <a id="updateBtn" data-target="#modal-supplier" data-toggle="modal"></a><i class="fa fa-pencil" ng-click="showSupplier(offer.supplier_id)"></i>
                                 </td>
                             </tr>
 
@@ -301,7 +302,8 @@
                             <td style="letter-spacing: 5px;">
                                 <a id="offerBtn" data-target="#modal-offer" data-toggle="modal"></a><i class="fa fa-ticket" ng-click="showOffer(offer.id)"></i>
                                 <a id="supplierBtn" data-target="#modal-supplier" data-toggle="modal"></a><i class="fa fa-user" ng-click="showSupplier(offer.supplier_id)"></i>
-                                <a id="offerConfirmBtn" data-target="#modal-offer-confirm" data-toggle="modal"></a><i class="fa fa-gavel" ng-click="showOfferConfirm(offer.id ,offer.actual_price,offer.actual_qty)"></i>
+                                <a id="offerConfirmBtn" data-target="#modal-offer-confirm" data-toggle="modal" ></a><i class="fa fa-gavel" ng-show="offer.status==1" ng-click="showOfferConfirm(offer.id ,offer.actual_price,offer.actual_qty)"></i>
+                                <!--<i class="fa fa-lock" ng-show="offer.status==2" ></i>-->
                             </td>
                         </tr>
 

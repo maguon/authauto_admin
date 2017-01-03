@@ -58,7 +58,7 @@ app.controller("autoController", ['$rootScope','$scope','$mpAjax','$location','$
         };
 
         $scope.getBrand = function(){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/brand?status=1').then(function(data){
+            $mpAjax.get('/brand?status=1').then(function(data){
                 if(data.success){
                     $scope.brandArray = data.result;
                 }else{

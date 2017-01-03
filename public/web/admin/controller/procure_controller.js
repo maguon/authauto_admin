@@ -34,7 +34,7 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
             })
         }
         $scope.getAuto = function(brandId){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/auto?brandId='+brandId).then(function(data){
+            $mpAjax.get('/auto?brandId='+brandId).then(function(data){
                 if(data.success){
                     $scope.autoArray = data.result;
                 }else{
@@ -45,7 +45,7 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
             })
         };
         $scope.getAutoExtra = function(autoId){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/auto/'+autoId+"/extra").then(function(data){
+            $mpAjax.get('/auto/'+autoId+"/extra").then(function(data){
                 if(data.success){
                     $scope.extraArray = data.result;
                 }else{
@@ -67,6 +67,7 @@ app.controller("procureController", ['$rootScope','$scope','$mpAjax','$location'
             $mpAjax.post('/admin/'+this.$root.adminId+'/procure',params).then(function(data){
                 if(data.success) {
                     SuccessBox('新增采购信息成功');
+                    $scope.showProcureFlag = true;
                     $scope.getProcure();
                 }else{
                     WarningBox('新增采购信息失败')

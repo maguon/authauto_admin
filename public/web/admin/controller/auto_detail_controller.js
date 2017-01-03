@@ -63,7 +63,7 @@ app.controller("autoDetailController", ['$rootScope','$scope','$mpAjax','$locati
             })
         };
         $scope.getAutoExtra = function(){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/auto/'+$scope.autoId+"/extra").then(function(data){
+            $mpAjax.get('/auto/'+$scope.autoId+"/extra").then(function(data){
                 if(data.success){
                     $scope.extraArray = data.result;
                 }else{

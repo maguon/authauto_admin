@@ -9,7 +9,7 @@ app.directive('header', function() {
         restrict: 'E',
         controller: function($scope, $element,$mpAjax,$rootScope,$baseFunction,$baseConfig){
             $scope.showInfo = function(){
-                alert('sss');
+                //alert('sss');
             };
             $rootScope.procureCount = $baseFunction.getCookieCart().length;
             $rootScope.notifyCount = 0;

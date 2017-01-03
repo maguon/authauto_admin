@@ -41,7 +41,7 @@ app.controller("brandDetailController", ['$rootScope','$scope','$mpAjax','$locat
             })
         }
         $scope.getBrand = function(){
-            $mpAjax.get('/admin/'+this.$root.adminId+'/brand?brandId='+$scope.brandId).then(function(data){
+            $mpAjax.get('/brand?brandId='+$scope.brandId).then(function(data){
                 if(data.success){
                     $scope.brand = data.result[0];
                     $scope.brandCn = data.result[0].brand_cn;
