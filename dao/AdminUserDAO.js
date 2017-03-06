@@ -15,7 +15,6 @@ function updatePassword(params,callback){
         logger.debug(' updatePassword ');
         return callback(error,rows);
     });
-
 }
 
 function updateInfo(params,callback){
@@ -46,6 +45,7 @@ function queryAdminUser(params,callback){
     db.dbQuery(query,paramsArray,function(error,rows){
         logger.debug(' queryAdminUser ');
         return callback(error,rows);
+
     });
 }
 
